@@ -1,22 +1,20 @@
 //
 //  RIPAppDelegate.h
-//  Tasker
+//  Notepad
 //
-//  Created by Nick on 2/20/14.
-//  Copyright (c) 2014 OddVenture. All rights reserved.
+//  Created by Nick on 1/22/14.
+//  Copyright (c) 2014 Nick. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
 
+@class RIPCoreDataController;
+
 @interface RIPAppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
+@property (strong, nonatomic) RIPCoreDataController *coreDataController;
 
-@property (readonly, strong, nonatomic) NSManagedObjectContext *managedObjectContext;
-@property (readonly, strong, nonatomic) NSManagedObjectModel *managedObjectModel;
-@property (readonly, strong, nonatomic) NSPersistentStoreCoordinator *persistentStoreCoordinator;
-
-- (void)saveContext;
-- (NSURL *)applicationDocumentsDirectory;
++ (RIPAppDelegate *)shared;
 
 @end

@@ -14,7 +14,6 @@
 		010C271918B6D7E60046D3B4 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 010C271718B6D7E60046D3B4 /* InfoPlist.strings */; };
 		010C271B18B6D7E60046D3B4 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 010C271A18B6D7E60046D3B4 /* main.m */; };
 		010C271F18B6D7E60046D3B4 /* RIPAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 010C271E18B6D7E60046D3B4 /* RIPAppDelegate.m */; };
-		010C272218B6D7E60046D3B4 /* Tasker.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 010C272018B6D7E60046D3B4 /* Tasker.xcdatamodeld */; };
 		010C272418B6D7E60046D3B4 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 010C272318B6D7E60046D3B4 /* Images.xcassets */; };
 		010C272B18B6D7E60046D3B4 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 010C272A18B6D7E60046D3B4 /* XCTest.framework */; };
 		010C272C18B6D7E60046D3B4 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 010C270C18B6D7E60046D3B4 /* Foundation.framework */; };
@@ -22,6 +21,44 @@
 		010C272E18B6D7E60046D3B4 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 010C271218B6D7E60046D3B4 /* CoreData.framework */; };
 		010C273618B6D7E60046D3B4 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 010C273418B6D7E60046D3B4 /* InfoPlist.strings */; };
 		010C273818B6D7E60046D3B4 /* TaskerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 010C273718B6D7E60046D3B4 /* TaskerTests.m */; };
+		019A762418B71EA200113DC4 /* CHANGELOG.md in Resources */ = {isa = PBXBuildFile; fileRef = 019A761E18B71EA200113DC4 /* CHANGELOG.md */; };
+		019A762518B71EA200113DC4 /* SZTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 019A762118B71EA200113DC4 /* SZTextView.m */; };
+		019A762618B71EA200113DC4 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 019A762218B71EA200113DC4 /* LICENSE */; };
+		019A762718B71EA200113DC4 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 019A762318B71EA200113DC4 /* README.md */; };
+		019A763418B71ECE00113DC4 /* Default-7-586@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 019A762918B71ECE00113DC4 /* Default-7-586@2x.png */; };
+		019A763518B71ECE00113DC4 /* Default-7@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 019A762A18B71ECE00113DC4 /* Default-7@2x.png */; };
+		019A763618B71ECE00113DC4 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 019A762B18B71ECE00113DC4 /* Default.png */; };
+		019A763718B71ECE00113DC4 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 019A762C18B71ECE00113DC4 /* Default@2x.png */; };
+		019A763818B71ECE00113DC4 /* Default~iphone.png in Resources */ = {isa = PBXBuildFile; fileRef = 019A762D18B71ECE00113DC4 /* Default~iphone.png */; };
+		019A763918B71ECE00113DC4 /* Icon-29.png in Resources */ = {isa = PBXBuildFile; fileRef = 019A762E18B71ECE00113DC4 /* Icon-29.png */; };
+		019A763A18B71ECE00113DC4 /* Icon-29@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 019A762F18B71ECE00113DC4 /* Icon-29@2x.png */; };
+		019A763B18B71ECE00113DC4 /* Icon-40@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 019A763018B71ECE00113DC4 /* Icon-40@2x.png */; };
+		019A763C18B71ECE00113DC4 /* Icon-57.png in Resources */ = {isa = PBXBuildFile; fileRef = 019A763118B71ECE00113DC4 /* Icon-57.png */; };
+		019A763D18B71ECE00113DC4 /* Icon-57@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 019A763218B71ECE00113DC4 /* Icon-57@2x.png */; };
+		019A763E18B71ECE00113DC4 /* Icon-60@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 019A763318B71ECE00113DC4 /* Icon-60@2x.png */; };
+		019A764718B71F5100113DC4 /* DefaultData.plist in Resources */ = {isa = PBXBuildFile; fileRef = 019A764218B71F5100113DC4 /* DefaultData.plist */; };
+		019A765E18B7200800113DC4 /* RIPCoreDataController+Notes.m in Sources */ = {isa = PBXBuildFile; fileRef = 019A764B18B7200800113DC4 /* RIPCoreDataController+Notes.m */; };
+		019A765F18B7200800113DC4 /* RIPCoreDataController+Sections.m in Sources */ = {isa = PBXBuildFile; fileRef = 019A764D18B7200800113DC4 /* RIPCoreDataController+Sections.m */; };
+		019A766018B7200800113DC4 /* RIPCoreDataController+Segments.m in Sources */ = {isa = PBXBuildFile; fileRef = 019A764F18B7200800113DC4 /* RIPCoreDataController+Segments.m */; };
+		019A766118B7200800113DC4 /* Entry.m in Sources */ = {isa = PBXBuildFile; fileRef = 019A765218B7200800113DC4 /* Entry.m */; };
+		019A766218B7200800113DC4 /* Note.m in Sources */ = {isa = PBXBuildFile; fileRef = 019A765418B7200800113DC4 /* Note.m */; };
+		019A766318B7200800113DC4 /* Section.m in Sources */ = {isa = PBXBuildFile; fileRef = 019A765718B7200800113DC4 /* Section.m */; };
+		019A766418B7200800113DC4 /* Segment.m in Sources */ = {isa = PBXBuildFile; fileRef = 019A765918B7200800113DC4 /* Segment.m */; };
+		019A766518B7200800113DC4 /* RIPCoreDataController.m in Sources */ = {isa = PBXBuildFile; fileRef = 019A765B18B7200800113DC4 /* RIPCoreDataController.m */; };
+		019A766618B7200800113DC4 /* RIPErrorManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 019A765D18B7200800113DC4 /* RIPErrorManager.m */; };
+		019A766A18B7204100113DC4 /* Tasker.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 019A766718B7204100113DC4 /* Tasker.xcdatamodeld */; };
+		019A768518B7213C00113DC4 /* NSDate+Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 019A766D18B7213C00113DC4 /* NSDate+Utils.m */; };
+		019A768618B7213C00113DC4 /* RIPCircleButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 019A766F18B7213C00113DC4 /* RIPCircleButton.m */; };
+		019A768718B7213C00113DC4 /* UIColor+Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 019A767118B7213C00113DC4 /* UIColor+Utils.m */; };
+		019A768818B7213C00113DC4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 019A767218B7213C00113DC4 /* Main.storyboard */; };
+		019A768918B7213C00113DC4 /* RIPNoteCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 019A767518B7213C00113DC4 /* RIPNoteCell.m */; };
+		019A768A18B7213C00113DC4 /* RIPSectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 019A767718B7213C00113DC4 /* RIPSectionCell.m */; };
+		019A768B18B7213C00113DC4 /* RIPSegmentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 019A767918B7213C00113DC4 /* RIPSegmentCell.m */; };
+		019A768C18B7213C00113DC4 /* RIPEditSegmentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 019A767C18B7213C00113DC4 /* RIPEditSegmentViewController.m */; };
+		019A768D18B7213C00113DC4 /* RIPNotesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 019A767E18B7213C00113DC4 /* RIPNotesViewController.m */; };
+		019A768E18B7213C00113DC4 /* RIPReminderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 019A768018B7213C00113DC4 /* RIPReminderViewController.m */; };
+		019A768F18B7213C00113DC4 /* RIPSectionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 019A768218B7213C00113DC4 /* RIPSectionsViewController.m */; };
+		019A769018B7213C00113DC4 /* RIPSegmentsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 019A768418B7213C00113DC4 /* RIPSegmentsViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -46,13 +83,73 @@
 		010C271C18B6D7E60046D3B4 /* Tasker-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Tasker-Prefix.pch"; sourceTree = "<group>"; };
 		010C271D18B6D7E60046D3B4 /* RIPAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RIPAppDelegate.h; sourceTree = "<group>"; };
 		010C271E18B6D7E60046D3B4 /* RIPAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RIPAppDelegate.m; sourceTree = "<group>"; };
-		010C272118B6D7E60046D3B4 /* Tasker.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Tasker.xcdatamodel; sourceTree = "<group>"; };
 		010C272318B6D7E60046D3B4 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		010C272918B6D7E60046D3B4 /* TaskerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TaskerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		010C272A18B6D7E60046D3B4 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		010C273318B6D7E60046D3B4 /* TaskerTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "TaskerTests-Info.plist"; sourceTree = "<group>"; };
 		010C273518B6D7E60046D3B4 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		010C273718B6D7E60046D3B4 /* TaskerTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TaskerTests.m; sourceTree = "<group>"; };
+		019A761E18B71EA200113DC4 /* CHANGELOG.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = CHANGELOG.md; sourceTree = "<group>"; };
+		019A762018B71EA200113DC4 /* SZTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SZTextView.h; sourceTree = "<group>"; };
+		019A762118B71EA200113DC4 /* SZTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SZTextView.m; sourceTree = "<group>"; };
+		019A762218B71EA200113DC4 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
+		019A762318B71EA200113DC4 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
+		019A762918B71ECE00113DC4 /* Default-7-586@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-7-586@2x.png"; sourceTree = "<group>"; };
+		019A762A18B71ECE00113DC4 /* Default-7@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-7@2x.png"; sourceTree = "<group>"; };
+		019A762B18B71ECE00113DC4 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
+		019A762C18B71ECE00113DC4 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
+		019A762D18B71ECE00113DC4 /* Default~iphone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default~iphone.png"; sourceTree = "<group>"; };
+		019A762E18B71ECE00113DC4 /* Icon-29.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-29.png"; sourceTree = "<group>"; };
+		019A762F18B71ECE00113DC4 /* Icon-29@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-29@2x.png"; sourceTree = "<group>"; };
+		019A763018B71ECE00113DC4 /* Icon-40@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-40@2x.png"; sourceTree = "<group>"; };
+		019A763118B71ECE00113DC4 /* Icon-57.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-57.png"; sourceTree = "<group>"; };
+		019A763218B71ECE00113DC4 /* Icon-57@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-57@2x.png"; sourceTree = "<group>"; };
+		019A763318B71ECE00113DC4 /* Icon-60@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-60@2x.png"; sourceTree = "<group>"; };
+		019A764218B71F5100113DC4 /* DefaultData.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = DefaultData.plist; sourceTree = "<group>"; };
+		019A764A18B7200800113DC4 /* RIPCoreDataController+Notes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "RIPCoreDataController+Notes.h"; sourceTree = "<group>"; };
+		019A764B18B7200800113DC4 /* RIPCoreDataController+Notes.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "RIPCoreDataController+Notes.m"; sourceTree = "<group>"; };
+		019A764C18B7200800113DC4 /* RIPCoreDataController+Sections.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "RIPCoreDataController+Sections.h"; sourceTree = "<group>"; };
+		019A764D18B7200800113DC4 /* RIPCoreDataController+Sections.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "RIPCoreDataController+Sections.m"; sourceTree = "<group>"; };
+		019A764E18B7200800113DC4 /* RIPCoreDataController+Segments.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "RIPCoreDataController+Segments.h"; sourceTree = "<group>"; };
+		019A764F18B7200800113DC4 /* RIPCoreDataController+Segments.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "RIPCoreDataController+Segments.m"; sourceTree = "<group>"; };
+		019A765118B7200800113DC4 /* Entry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Entry.h; sourceTree = "<group>"; };
+		019A765218B7200800113DC4 /* Entry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Entry.m; sourceTree = "<group>"; };
+		019A765318B7200800113DC4 /* Note.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Note.h; sourceTree = "<group>"; };
+		019A765418B7200800113DC4 /* Note.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Note.m; sourceTree = "<group>"; };
+		019A765518B7200800113DC4 /* RIPCompletion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RIPCompletion.h; sourceTree = "<group>"; };
+		019A765618B7200800113DC4 /* Section.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Section.h; sourceTree = "<group>"; };
+		019A765718B7200800113DC4 /* Section.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Section.m; sourceTree = "<group>"; };
+		019A765818B7200800113DC4 /* Segment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Segment.h; sourceTree = "<group>"; };
+		019A765918B7200800113DC4 /* Segment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Segment.m; sourceTree = "<group>"; };
+		019A765A18B7200800113DC4 /* RIPCoreDataController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RIPCoreDataController.h; sourceTree = "<group>"; };
+		019A765B18B7200800113DC4 /* RIPCoreDataController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RIPCoreDataController.m; sourceTree = "<group>"; };
+		019A765C18B7200800113DC4 /* RIPErrorManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RIPErrorManager.h; sourceTree = "<group>"; };
+		019A765D18B7200800113DC4 /* RIPErrorManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RIPErrorManager.m; sourceTree = "<group>"; };
+		019A766818B7204100113DC4 /* Tasker 2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Tasker 2.xcdatamodel"; sourceTree = "<group>"; };
+		019A766918B7204100113DC4 /* Tasker.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Tasker.xcdatamodel; sourceTree = "<group>"; };
+		019A766C18B7213C00113DC4 /* NSDate+Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+Utils.h"; sourceTree = "<group>"; };
+		019A766D18B7213C00113DC4 /* NSDate+Utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+Utils.m"; sourceTree = "<group>"; };
+		019A766E18B7213C00113DC4 /* RIPCircleButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RIPCircleButton.h; sourceTree = "<group>"; };
+		019A766F18B7213C00113DC4 /* RIPCircleButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RIPCircleButton.m; sourceTree = "<group>"; };
+		019A767018B7213C00113DC4 /* UIColor+Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+Utils.h"; sourceTree = "<group>"; };
+		019A767118B7213C00113DC4 /* UIColor+Utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+Utils.m"; sourceTree = "<group>"; };
+		019A767218B7213C00113DC4 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		019A767418B7213C00113DC4 /* RIPNoteCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RIPNoteCell.h; sourceTree = "<group>"; };
+		019A767518B7213C00113DC4 /* RIPNoteCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RIPNoteCell.m; sourceTree = "<group>"; };
+		019A767618B7213C00113DC4 /* RIPSectionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RIPSectionCell.h; sourceTree = "<group>"; };
+		019A767718B7213C00113DC4 /* RIPSectionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RIPSectionCell.m; sourceTree = "<group>"; };
+		019A767818B7213C00113DC4 /* RIPSegmentCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RIPSegmentCell.h; sourceTree = "<group>"; };
+		019A767918B7213C00113DC4 /* RIPSegmentCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RIPSegmentCell.m; sourceTree = "<group>"; };
+		019A767B18B7213C00113DC4 /* RIPEditSegmentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RIPEditSegmentViewController.h; sourceTree = "<group>"; };
+		019A767C18B7213C00113DC4 /* RIPEditSegmentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RIPEditSegmentViewController.m; sourceTree = "<group>"; };
+		019A767D18B7213C00113DC4 /* RIPNotesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RIPNotesViewController.h; sourceTree = "<group>"; };
+		019A767E18B7213C00113DC4 /* RIPNotesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RIPNotesViewController.m; sourceTree = "<group>"; };
+		019A767F18B7213C00113DC4 /* RIPReminderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RIPReminderViewController.h; sourceTree = "<group>"; };
+		019A768018B7213C00113DC4 /* RIPReminderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RIPReminderViewController.m; sourceTree = "<group>"; };
+		019A768118B7213C00113DC4 /* RIPSectionsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RIPSectionsViewController.h; sourceTree = "<group>"; };
+		019A768218B7213C00113DC4 /* RIPSectionsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RIPSectionsViewController.m; sourceTree = "<group>"; };
+		019A768318B7213C00113DC4 /* RIPSegmentsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RIPSegmentsViewController.h; sourceTree = "<group>"; };
+		019A768418B7213C00113DC4 /* RIPSegmentsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RIPSegmentsViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -117,8 +214,10 @@
 			children = (
 				010C271D18B6D7E60046D3B4 /* RIPAppDelegate.h */,
 				010C271E18B6D7E60046D3B4 /* RIPAppDelegate.m */,
-				010C272318B6D7E60046D3B4 /* Images.xcassets */,
-				010C272018B6D7E60046D3B4 /* Tasker.xcdatamodeld */,
+				019A761818B71DB400113DC4 /* Addons */,
+				019A764118B71F5100113DC4 /* Data */,
+				019A764318B71F5100113DC4 /* Interface */,
+				019A764418B71F5100113DC4 /* Model */,
 				010C271518B6D7E60046D3B4 /* Supporting Files */,
 			);
 			path = Tasker;
@@ -127,6 +226,8 @@
 		010C271518B6D7E60046D3B4 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				019A762818B71ECE00113DC4 /* Icons */,
+				010C272318B6D7E60046D3B4 /* Images.xcassets */,
 				010C271618B6D7E60046D3B4 /* Tasker-Info.plist */,
 				010C271718B6D7E60046D3B4 /* InfoPlist.strings */,
 				010C271A18B6D7E60046D3B4 /* main.m */,
@@ -151,6 +252,158 @@
 				010C273418B6D7E60046D3B4 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		019A761818B71DB400113DC4 /* Addons */ = {
+			isa = PBXGroup;
+			children = (
+				019A761D18B71EA200113DC4 /* SZTextView */,
+			);
+			name = Addons;
+			sourceTree = "<group>";
+		};
+		019A761D18B71EA200113DC4 /* SZTextView */ = {
+			isa = PBXGroup;
+			children = (
+				019A761E18B71EA200113DC4 /* CHANGELOG.md */,
+				019A761F18B71EA200113DC4 /* Classes */,
+				019A762218B71EA200113DC4 /* LICENSE */,
+				019A762318B71EA200113DC4 /* README.md */,
+			);
+			name = SZTextView;
+			path = Addons/SZTextView;
+			sourceTree = "<group>";
+		};
+		019A761F18B71EA200113DC4 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				019A762018B71EA200113DC4 /* SZTextView.h */,
+				019A762118B71EA200113DC4 /* SZTextView.m */,
+			);
+			path = Classes;
+			sourceTree = "<group>";
+		};
+		019A762818B71ECE00113DC4 /* Icons */ = {
+			isa = PBXGroup;
+			children = (
+				019A762918B71ECE00113DC4 /* Default-7-586@2x.png */,
+				019A762A18B71ECE00113DC4 /* Default-7@2x.png */,
+				019A762B18B71ECE00113DC4 /* Default.png */,
+				019A762C18B71ECE00113DC4 /* Default@2x.png */,
+				019A762D18B71ECE00113DC4 /* Default~iphone.png */,
+				019A762E18B71ECE00113DC4 /* Icon-29.png */,
+				019A762F18B71ECE00113DC4 /* Icon-29@2x.png */,
+				019A763018B71ECE00113DC4 /* Icon-40@2x.png */,
+				019A763118B71ECE00113DC4 /* Icon-57.png */,
+				019A763218B71ECE00113DC4 /* Icon-57@2x.png */,
+				019A763318B71ECE00113DC4 /* Icon-60@2x.png */,
+			);
+			path = Icons;
+			sourceTree = "<group>";
+		};
+		019A764118B71F5100113DC4 /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				019A764218B71F5100113DC4 /* DefaultData.plist */,
+			);
+			path = Data;
+			sourceTree = "<group>";
+		};
+		019A764318B71F5100113DC4 /* Interface */ = {
+			isa = PBXGroup;
+			children = (
+				019A767218B7213C00113DC4 /* Main.storyboard */,
+				019A766B18B7213C00113DC4 /* Custom */,
+				019A767318B7213C00113DC4 /* Table View Cells */,
+				019A767A18B7213C00113DC4 /* View Controllers */,
+			);
+			path = Interface;
+			sourceTree = "<group>";
+		};
+		019A764418B71F5100113DC4 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				019A766718B7204100113DC4 /* Tasker.xcdatamodeld */,
+				019A764918B7200800113DC4 /* Controller Categories */,
+				019A765018B7200800113DC4 /* Managed Objects */,
+				019A765A18B7200800113DC4 /* RIPCoreDataController.h */,
+				019A765B18B7200800113DC4 /* RIPCoreDataController.m */,
+				019A765C18B7200800113DC4 /* RIPErrorManager.h */,
+				019A765D18B7200800113DC4 /* RIPErrorManager.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		019A764918B7200800113DC4 /* Controller Categories */ = {
+			isa = PBXGroup;
+			children = (
+				019A764A18B7200800113DC4 /* RIPCoreDataController+Notes.h */,
+				019A764B18B7200800113DC4 /* RIPCoreDataController+Notes.m */,
+				019A764C18B7200800113DC4 /* RIPCoreDataController+Sections.h */,
+				019A764D18B7200800113DC4 /* RIPCoreDataController+Sections.m */,
+				019A764E18B7200800113DC4 /* RIPCoreDataController+Segments.h */,
+				019A764F18B7200800113DC4 /* RIPCoreDataController+Segments.m */,
+			);
+			path = "Controller Categories";
+			sourceTree = "<group>";
+		};
+		019A765018B7200800113DC4 /* Managed Objects */ = {
+			isa = PBXGroup;
+			children = (
+				019A765118B7200800113DC4 /* Entry.h */,
+				019A765218B7200800113DC4 /* Entry.m */,
+				019A765318B7200800113DC4 /* Note.h */,
+				019A765418B7200800113DC4 /* Note.m */,
+				019A765518B7200800113DC4 /* RIPCompletion.h */,
+				019A765618B7200800113DC4 /* Section.h */,
+				019A765718B7200800113DC4 /* Section.m */,
+				019A765818B7200800113DC4 /* Segment.h */,
+				019A765918B7200800113DC4 /* Segment.m */,
+			);
+			path = "Managed Objects";
+			sourceTree = "<group>";
+		};
+		019A766B18B7213C00113DC4 /* Custom */ = {
+			isa = PBXGroup;
+			children = (
+				019A766C18B7213C00113DC4 /* NSDate+Utils.h */,
+				019A766D18B7213C00113DC4 /* NSDate+Utils.m */,
+				019A766E18B7213C00113DC4 /* RIPCircleButton.h */,
+				019A766F18B7213C00113DC4 /* RIPCircleButton.m */,
+				019A767018B7213C00113DC4 /* UIColor+Utils.h */,
+				019A767118B7213C00113DC4 /* UIColor+Utils.m */,
+			);
+			path = Custom;
+			sourceTree = "<group>";
+		};
+		019A767318B7213C00113DC4 /* Table View Cells */ = {
+			isa = PBXGroup;
+			children = (
+				019A767418B7213C00113DC4 /* RIPNoteCell.h */,
+				019A767518B7213C00113DC4 /* RIPNoteCell.m */,
+				019A767618B7213C00113DC4 /* RIPSectionCell.h */,
+				019A767718B7213C00113DC4 /* RIPSectionCell.m */,
+				019A767818B7213C00113DC4 /* RIPSegmentCell.h */,
+				019A767918B7213C00113DC4 /* RIPSegmentCell.m */,
+			);
+			path = "Table View Cells";
+			sourceTree = "<group>";
+		};
+		019A767A18B7213C00113DC4 /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				019A767B18B7213C00113DC4 /* RIPEditSegmentViewController.h */,
+				019A767C18B7213C00113DC4 /* RIPEditSegmentViewController.m */,
+				019A767D18B7213C00113DC4 /* RIPNotesViewController.h */,
+				019A767E18B7213C00113DC4 /* RIPNotesViewController.m */,
+				019A767F18B7213C00113DC4 /* RIPReminderViewController.h */,
+				019A768018B7213C00113DC4 /* RIPReminderViewController.m */,
+				019A768118B7213C00113DC4 /* RIPSectionsViewController.h */,
+				019A768218B7213C00113DC4 /* RIPSectionsViewController.m */,
+				019A768318B7213C00113DC4 /* RIPSegmentsViewController.h */,
+				019A768418B7213C00113DC4 /* RIPSegmentsViewController.m */,
+			);
+			path = "View Controllers";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -201,6 +454,9 @@
 				LastUpgradeCheck = 0500;
 				ORGANIZATIONNAME = OddVenture;
 				TargetAttributes = {
+					010C270818B6D7E50046D3B4 = {
+						DevelopmentTeam = UA832M7LLD;
+					};
 					010C272818B6D7E60046D3B4 = {
 						TestTargetID = 010C270818B6D7E50046D3B4;
 					};
@@ -229,8 +485,24 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				019A762718B71EA200113DC4 /* README.md in Resources */,
+				019A763618B71ECE00113DC4 /* Default.png in Resources */,
+				019A763818B71ECE00113DC4 /* Default~iphone.png in Resources */,
+				019A764718B71F5100113DC4 /* DefaultData.plist in Resources */,
+				019A763718B71ECE00113DC4 /* Default@2x.png in Resources */,
+				019A763C18B71ECE00113DC4 /* Icon-57.png in Resources */,
 				010C271918B6D7E60046D3B4 /* InfoPlist.strings in Resources */,
 				010C272418B6D7E60046D3B4 /* Images.xcassets in Resources */,
+				019A762418B71EA200113DC4 /* CHANGELOG.md in Resources */,
+				019A763E18B71ECE00113DC4 /* Icon-60@2x.png in Resources */,
+				019A762618B71EA200113DC4 /* LICENSE in Resources */,
+				019A763518B71ECE00113DC4 /* Default-7@2x.png in Resources */,
+				019A763418B71ECE00113DC4 /* Default-7-586@2x.png in Resources */,
+				019A763B18B71ECE00113DC4 /* Icon-40@2x.png in Resources */,
+				019A763D18B71ECE00113DC4 /* Icon-57@2x.png in Resources */,
+				019A768818B7213C00113DC4 /* Main.storyboard in Resources */,
+				019A763918B71ECE00113DC4 /* Icon-29.png in Resources */,
+				019A763A18B71ECE00113DC4 /* Icon-29@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -249,8 +521,29 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				010C272218B6D7E60046D3B4 /* Tasker.xcdatamodeld in Sources */,
+				019A768C18B7213C00113DC4 /* RIPEditSegmentViewController.m in Sources */,
+				019A766218B7200800113DC4 /* Note.m in Sources */,
+				019A766618B7200800113DC4 /* RIPErrorManager.m in Sources */,
+				019A768B18B7213C00113DC4 /* RIPSegmentCell.m in Sources */,
+				019A768618B7213C00113DC4 /* RIPCircleButton.m in Sources */,
+				019A768718B7213C00113DC4 /* UIColor+Utils.m in Sources */,
+				019A769018B7213C00113DC4 /* RIPSegmentsViewController.m in Sources */,
+				019A768E18B7213C00113DC4 /* RIPReminderViewController.m in Sources */,
+				019A766318B7200800113DC4 /* Section.m in Sources */,
+				019A765E18B7200800113DC4 /* RIPCoreDataController+Notes.m in Sources */,
+				019A762518B71EA200113DC4 /* SZTextView.m in Sources */,
+				019A768A18B7213C00113DC4 /* RIPSectionCell.m in Sources */,
+				019A766518B7200800113DC4 /* RIPCoreDataController.m in Sources */,
+				019A766018B7200800113DC4 /* RIPCoreDataController+Segments.m in Sources */,
+				019A768918B7213C00113DC4 /* RIPNoteCell.m in Sources */,
+				019A766A18B7204100113DC4 /* Tasker.xcdatamodeld in Sources */,
+				019A768518B7213C00113DC4 /* NSDate+Utils.m in Sources */,
+				019A766418B7200800113DC4 /* Segment.m in Sources */,
+				019A768F18B7213C00113DC4 /* RIPSectionsViewController.m in Sources */,
+				019A766118B7200800113DC4 /* Entry.m in Sources */,
+				019A768D18B7213C00113DC4 /* RIPNotesViewController.m in Sources */,
 				010C271F18B6D7E60046D3B4 /* RIPAppDelegate.m in Sources */,
+				019A765F18B7200800113DC4 /* RIPCoreDataController+Sections.m in Sources */,
 				010C271B18B6D7E60046D3B4 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -370,6 +663,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Tasker/Tasker-Prefix.pch";
 				INFOPLIST_FILE = "Tasker/Tasker-Info.plist";
@@ -383,6 +677,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Tasker/Tasker-Prefix.pch";
 				INFOPLIST_FILE = "Tasker/Tasker-Info.plist";
@@ -452,6 +747,7 @@
 				010C273D18B6D7E60046D3B4 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		010C273E18B6D7E60046D3B4 /* Build configuration list for PBXNativeTarget "TaskerTests" */ = {
 			isa = XCConfigurationList;
@@ -460,16 +756,18 @@
 				010C274018B6D7E60046D3B4 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
 /* Begin XCVersionGroup section */
-		010C272018B6D7E60046D3B4 /* Tasker.xcdatamodeld */ = {
+		019A766718B7204100113DC4 /* Tasker.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
-				010C272118B6D7E60046D3B4 /* Tasker.xcdatamodel */,
+				019A766818B7204100113DC4 /* Tasker 2.xcdatamodel */,
+				019A766918B7204100113DC4 /* Tasker.xcdatamodel */,
 			);
-			currentVersion = 010C272118B6D7E60046D3B4 /* Tasker.xcdatamodel */;
+			currentVersion = 019A766918B7204100113DC4 /* Tasker.xcdatamodel */;
 			path = Tasker.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;

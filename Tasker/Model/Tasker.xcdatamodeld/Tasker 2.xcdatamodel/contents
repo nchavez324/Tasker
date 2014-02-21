@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model userDefinedModelVersionIdentifier="1.0.0" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="3401" systemVersion="13B42" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
+    <entity name="Entry" representedClassName="Entry" isAbstract="YES" syncable="YES">
+        <attribute name="position" attributeType="Integer 16" minValueString="0" defaultValueString="0" indexed="YES" syncable="YES"/>
+        <attribute name="title" optional="YES" attributeType="String" minValueString="1" maxValueString="32" syncable="YES"/>
+    </entity>
+    <entity name="Note" representedClassName="Note" parentEntity="Entry" syncable="YES">
+        <attribute name="color" attributeType="Transformable" syncable="YES"/>
+        <relationship name="section" maxCount="1" deletionRule="Nullify" destinationEntity="Section" inverseName="notes" inverseEntity="Section" syncable="YES"/>
+        <relationship name="segments" optional="YES" toMany="YES" maxCount="30" deletionRule="Cascade" destinationEntity="Segment" inverseName="note" inverseEntity="Segment" syncable="YES"/>
+    </entity>
+    <entity name="Section" representedClassName="Section" parentEntity="Entry" syncable="YES">
+        <attribute name="color" attributeType="Transformable" minValueString="6" maxValueString="6" syncable="YES"/>
+        <relationship name="notes" optional="YES" toMany="YES" maxCount="50" deletionRule="Cascade" destinationEntity="Note" inverseName="section" inverseEntity="Note" syncable="YES"/>
+    </entity>
+    <entity name="Segment" representedClassName="Segment" parentEntity="Entry" syncable="YES">
+        <attribute name="completion" attributeType="Integer 16" minValueString="0" maxValueString="2" defaultValueString="0" syncable="YES"/>
+        <attribute name="content" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="date" attributeType="Date" syncable="YES"/>
+        <relationship name="note" maxCount="1" deletionRule="Nullify" destinationEntity="Note" inverseName="segments" inverseEntity="Note" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="Entry" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="Note" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="Section" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="Segment" positionX="0" positionY="0" width="0" height="0"/>
+    </elements>
+</model>
