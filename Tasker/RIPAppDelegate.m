@@ -8,6 +8,7 @@
 
 #import "RIPAppDelegate.h"
 
+
 @implementation RIPAppDelegate
 
 @synthesize managedObjectContext = _managedObjectContext;
