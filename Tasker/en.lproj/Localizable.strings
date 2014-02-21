@@ -1,0 +1,73 @@
+/*
+ Localizable.strings
+ Notepad
+ 
+ Created by Nick on 1/22/14.
+ Copyright (c) 2014 Nick. All rights reserved.
+ */
+
+/* Confirm deletion */
+"ARE_YOU_SURE" = "Are you sure?";
+
+/* Application name */
+"APPLICATION_NAME" = "Tasker";
+
+/* Back */
+"BACK" = "Back";
+
+/* Cancel */
+"CANCEL" = "Cancel";
+
+/* Delete Section */
+"DELETE_SECTION" = "Delete Section";
+
+/* Due: */
+"DUE" = "Due:";
+
+/* Edit Task */
+"EDIT_TASK" = "Edit Task";
+
+/* New Task */
+"NEW_TASK" = "New Task";
+
+/* None */
+"NONE" = "None";
+
+/* Notes */
+"NOTES" = "Notes:";
+
+/* Past */
+"PAST" = "Past";
+
+/* Reminder */
+"REMINDER" = "Alert";
+
+"REM_AT_TIME_OF_EVENT" = "At time of event";
+
+"REM_DAYS_BEFORE_P_PREFIX" = "";
+"REM_DAYS_BEFORE_P_SUFFIX" = " days before";
+"REM_DAYS_BEFORE_S_PREFIX" = "";
+"REM_DAYS_BEFORE_S_SUFFIX" = " day before";
+
+"REM_HOURS_BEFORE_P_PREFIX" = "";
+"REM_HOURS_BEFORE_P_SUFFIX" = " hours before";
+"REM_HOURS_BEFORE_S_PREFIX" = "";
+"REM_HOURS_BEFORE_S_SUFFIX" = " hour before";
+
+"REM_MINUTES_BEFORE_PREFIX" = "";
+"REM_MINUTES_BEFORE_SUFFIX" = " minutes before";
+
+"REM_WEEK_BEFORE_PREFIX" = "";
+"REM_WEEK_BEFORE_SUFFIX" = " week before";
+
+/* Title */
+"TITLE" = "Title";
+
+/* Tomorrow */
+"TOMORROW" = "Tomorrow";
+
+/* Untitled */
+"UNTITLED" = "Untitled";
+
+/* Yesterday */
+"YESTERDAY" = "Yesterday";
