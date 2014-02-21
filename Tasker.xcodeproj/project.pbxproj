@@ -60,6 +60,10 @@
 		019A768E18B7213C00113DC4 /* RIPReminderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 019A768018B7213C00113DC4 /* RIPReminderViewController.m */; };
 		019A768F18B7213C00113DC4 /* RIPSectionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 019A768218B7213C00113DC4 /* RIPSectionsViewController.m */; };
 		019A769018B7213C00113DC4 /* RIPSegmentsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 019A768418B7213C00113DC4 /* RIPSegmentsViewController.m */; };
+		01CC83F618B8065300233E09 /* edit_task.png in Resources */ = {isa = PBXBuildFile; fileRef = 01CC83F218B8065300233E09 /* edit_task.png */; };
+		01CC83F718B8065300233E09 /* notes.png in Resources */ = {isa = PBXBuildFile; fileRef = 01CC83F318B8065300233E09 /* notes.png */; };
+		01CC83F818B8065300233E09 /* sections.png in Resources */ = {isa = PBXBuildFile; fileRef = 01CC83F418B8065300233E09 /* sections.png */; };
+		01CC83F918B8065300233E09 /* tasks.png in Resources */ = {isa = PBXBuildFile; fileRef = 01CC83F518B8065300233E09 /* tasks.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -77,9 +81,9 @@
 		01053CE218B7250000E55BA3 /* pt */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pt; path = pt.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		01053CE318B7250500E55BA3 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		01053CE418B7250500E55BA3 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		01053CE618B7250C00E55BA3 /* en */ = {isa = PBXFileReference; lastKnownFileType = file; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
-		01053CE818B7250F00E55BA3 /* pt */ = {isa = PBXFileReference; lastKnownFileType = file; name = pt; path = pt.lproj/Localizable.strings; sourceTree = "<group>"; };
-		01053CE918B7251000E55BA3 /* es */ = {isa = PBXFileReference; lastKnownFileType = file; name = es; path = es.lproj/Localizable.strings; sourceTree = "<group>"; };
+		01053CE618B7250C00E55BA3 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		01053CE818B7250F00E55BA3 /* pt */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pt; path = pt.lproj/Localizable.strings; sourceTree = "<group>"; };
+		01053CE918B7251000E55BA3 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Localizable.strings; sourceTree = "<group>"; };
 		010C270918B6D7E60046D3B4 /* Tasker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Tasker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		010C270C18B6D7E60046D3B4 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		010C270E18B6D7E60046D3B4 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -158,6 +162,10 @@
 		019A768218B7213C00113DC4 /* RIPSectionsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RIPSectionsViewController.m; sourceTree = "<group>"; };
 		019A768318B7213C00113DC4 /* RIPSegmentsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RIPSegmentsViewController.h; sourceTree = "<group>"; };
 		019A768418B7213C00113DC4 /* RIPSegmentsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RIPSegmentsViewController.m; sourceTree = "<group>"; };
+		01CC83F218B8065300233E09 /* edit_task.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = edit_task.png; sourceTree = "<group>"; };
+		01CC83F318B8065300233E09 /* notes.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = notes.png; sourceTree = "<group>"; };
+		01CC83F418B8065300233E09 /* sections.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sections.png; sourceTree = "<group>"; };
+		01CC83F518B8065300233E09 /* tasks.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tasks.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -234,6 +242,7 @@
 		010C271518B6D7E60046D3B4 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				01CC83F118B8065300233E09 /* Screenshots */,
 				019A762818B71ECE00113DC4 /* Icons */,
 				010C272318B6D7E60046D3B4 /* Images.xcassets */,
 				010C271618B6D7E60046D3B4 /* Tasker-Info.plist */,
@@ -415,6 +424,17 @@
 			path = "View Controllers";
 			sourceTree = "<group>";
 		};
+		01CC83F118B8065300233E09 /* Screenshots */ = {
+			isa = PBXGroup;
+			children = (
+				01CC83F218B8065300233E09 /* edit_task.png */,
+				01CC83F318B8065300233E09 /* notes.png */,
+				01CC83F418B8065300233E09 /* sections.png */,
+				01CC83F518B8065300233E09 /* tasks.png */,
+			);
+			path = Screenshots;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -499,6 +519,7 @@
 				019A762718B71EA200113DC4 /* README.md in Resources */,
 				019A763618B71ECE00113DC4 /* Default.png in Resources */,
 				019A763818B71ECE00113DC4 /* Default~iphone.png in Resources */,
+				01CC83F718B8065300233E09 /* notes.png in Resources */,
 				019A764718B71F5100113DC4 /* DefaultData.plist in Resources */,
 				019A763718B71ECE00113DC4 /* Default@2x.png in Resources */,
 				019A763C18B71ECE00113DC4 /* Icon-57.png in Resources */,
@@ -506,8 +527,10 @@
 				010C272418B6D7E60046D3B4 /* Images.xcassets in Resources */,
 				019A762418B71EA200113DC4 /* CHANGELOG.md in Resources */,
 				019A763E18B71ECE00113DC4 /* Icon-60@2x.png in Resources */,
+				01CC83F918B8065300233E09 /* tasks.png in Resources */,
 				019A762618B71EA200113DC4 /* LICENSE in Resources */,
 				019A763518B71ECE00113DC4 /* Default-7@2x.png in Resources */,
+				01CC83F618B8065300233E09 /* edit_task.png in Resources */,
 				019A763418B71ECE00113DC4 /* Default-7-586@2x.png in Resources */,
 				019A763B18B71ECE00113DC4 /* Icon-40@2x.png in Resources */,
 				019A763D18B71ECE00113DC4 /* Icon-57@2x.png in Resources */,
@@ -515,6 +538,7 @@
 				01053CE518B7250C00E55BA3 /* Localizable.strings in Resources */,
 				019A763918B71ECE00113DC4 /* Icon-29.png in Resources */,
 				019A763A18B71ECE00113DC4 /* Icon-29@2x.png in Resources */,
+				01CC83F818B8065300233E09 /* sections.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
