@@ -28,9 +28,9 @@ static NSString *daysBefore = @"REM_DAYS_BEFORE";
 @dynamic reminder;
 @dynamic note;
 
-+ (NSObject *)intervalForIndex:(NSInteger)index {
++ (NSNumber *)intervalForIndex:(NSInteger)index {
     if(index == 0)
-        return [NSNull null];
+        return nil;
     if(kReminderIntervals == nil)
         [Segment initReminders];
     return [NSNumber numberWithFloat:([(NSNumber *)kReminderIntervals[index-1][0] floatValue]*[(NSNumber *)kReminderIntervals[index-1][1] integerValue])];
@@ -39,18 +39,18 @@ static NSString *daysBefore = @"REM_DAYS_BEFORE";
 + (void)initReminders {
     
     kReminderIntervals = @[
-                           @[[NSNumber numberWithFloat:60], [NSNumber numberWithInt:0], @"REM_AT_TIME_OF_EVENT"],
-                           @[[NSNumber numberWithFloat:60], [NSNumber numberWithInt:5], minutesBefore],
-                           @[[NSNumber numberWithFloat:60], [NSNumber numberWithInt:15], minutesBefore],
-                           @[[NSNumber numberWithFloat:60], [NSNumber numberWithInt:30], minutesBefore],
+                           @[@60.0, @0, @"REM_AT_TIME_OF_EVENT"],
+                           @[@60.0, @5, minutesBefore],
+                           @[@60.0, @15, minutesBefore],
+                           @[@60.0, @30, minutesBefore],
                            
-                           @[[NSNumber numberWithFloat:60*60], [NSNumber numberWithInt:1], [NSString stringWithFormat:@"%@_S", hoursBefore]],
-                           @[[NSNumber numberWithFloat:60*60], [NSNumber numberWithInt:2], [NSString stringWithFormat:@"%@_P", hoursBefore]],
+                           @[[NSNumber numberWithFloat:60*60], @1, [NSString stringWithFormat:@"%@_S", hoursBefore]],
+                           @[[NSNumber numberWithFloat:60*60], @2, [NSString stringWithFormat:@"%@_P", hoursBefore]],
                            
-                           @[[NSNumber numberWithFloat:60*60*24], [NSNumber numberWithInt:1], [NSString stringWithFormat:@"%@_S", daysBefore]],
-                           @[[NSNumber numberWithFloat:60*60*24], [NSNumber numberWithInt:2], [NSString stringWithFormat:@"%@_P", daysBefore]],
+                           @[[NSNumber numberWithFloat:60*60*24], @1, [NSString stringWithFormat:@"%@_S", daysBefore]],
+                           @[[NSNumber numberWithFloat:60*60*24], @2, [NSString stringWithFormat:@"%@_P", daysBefore]],
                            
-                           @[[NSNumber numberWithFloat:60*60*24*7], [NSNumber numberWithInt:1], @"REM_WEEK_BEFORE"],
+                           @[[NSNumber numberWithFloat:60*60*24*7], @1, @"REM_WEEK_BEFORE"],
                            ];
 }
 
@@ -60,8 +60,8 @@ static NSString *daysBefore = @"REM_DAYS_BEFORE";
     return kReminderIntervals.count + 1;
 }
 
-+ (NSInteger)indexForInterval:(NSObject *)interval {
-    if(interval == nil || interval == [NSNull null] || ![interval.class isSubclassOfClass:[NSNumber class]])
++ (NSInteger)indexForInterval:(NSNumber *)interval {
+    if(interval == nil || ![interval.class isSubclassOfClass:[NSNumber class]])
         return 0;
     NSNumber *n = (NSNumber *)interval;
     NSTimeInterval ti = n.doubleValue;
@@ -80,8 +80,8 @@ static NSString *daysBefore = @"REM_DAYS_BEFORE";
     return index;
 }
 
-+ (NSString *)stringForReminderInterval:(NSObject *)interval {
-    if(interval == nil || interval == [NSNull null] || ![interval.class isSubclassOfClass:[NSNumber class]])
++ (NSString *)stringForReminderInterval:(NSNumber *)interval {
+    if(interval == nil || ![interval.class isSubclassOfClass:[NSNumber class]])
         return NSLocalizedString(@"NONE", @"None");
     NSNumber *n = (NSNumber *)interval;
     NSTimeInterval ti = n.doubleValue;
@@ -121,7 +121,7 @@ static NSString *daysBefore = @"REM_DAYS_BEFORE";
         notification.fireDate = [NSDate dateWithTimeInterval:interval.floatValue sinceDate:date];
         notification.userInfo = @{kEntryObjectIDKey: [NSString stringWithFormat:@"%@", segment[kEntryObjectIDKey]]};
         notification.alertAction = @"";
-        notification.alertBody = [NSString stringWithFormat:@"%@: %@", sectionName, segment[kEntryTitleKey]];
+        notification.alertBody = [NSString stringWithFormat:@"%@\n%@", sectionName, segment[kEntryTitleKey]];
         notification.soundName = UILocalNotificationDefaultSoundName;
         [[UIApplication sharedApplication] scheduleLocalNotification:notification];
         return YES;

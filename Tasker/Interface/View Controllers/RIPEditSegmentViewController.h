@@ -16,6 +16,6 @@
 
 - (IBAction)pickerValueChanged:(UIDatePicker *)sender;
 - (IBAction)titleEditingDidEnd:(UITextField *)sender;
-- (void)updateReminderInterval:(NSObject *)interval;
+- (void)updateReminderInterval:(NSNumber *)interval;
 
 @end

@@ -37,6 +37,13 @@
     [_editSegVc updateReminderInterval:_timeInterval];
 }
 
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    NSIndexPath *i = [NSIndexPath indexPathForRow:[Segment indexForInterval:_timeInterval] inSection:0];
+    UITableViewCell *c = [self.tableView cellForRowAtIndexPath:i];
+    c.accessoryType = UITableViewCellAccessoryCheckmark;
+}
+
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -50,9 +57,10 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     static NSString *CellIdentifier = @"Cell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
-    NSNumber *ti = (NSNumber *)[Segment intervalForIndex:indexPath.row];
+    NSNumber *ti = [Segment intervalForIndex:indexPath.row];
     cell.textLabel.text = [Segment stringForReminderInterval:ti];
-    cell.accessoryType = ([ti isEqual:_timeInterval])?UITableViewCellAccessoryCheckmark:UITableViewCellAccessoryNone;
+    BOOL bothNull = (_timeInterval == nil && ti == nil);
+    cell.accessoryType = ([ti isEqual:_timeInterval] || bothNull)?UITableViewCellAccessoryCheckmark:UITableViewCellAccessoryNone;
     
     return cell;
 }
@@ -62,7 +70,7 @@
 }
 
 - (void)tableView:(UITableView *)tableView didUnhighlightRowAtIndexPath:(NSIndexPath *)indexPath {
-    NSInteger i = [Segment indexForInterval:(NSObject *)_timeInterval];
+    NSInteger i = [Segment indexForInterval:_timeInterval];
     UITableViewCell *oldCell = [tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:i inSection:0]];
     oldCell.accessoryType = UITableViewCellAccessoryNone;
     

@@ -335,7 +335,7 @@
                     if(d[kEntryObjectIDKey]){
                         NSManagedObjectID *moid = (NSManagedObjectID *)d[kEntryObjectIDKey];
                         if([moid.description isEqual:entry[kEntryObjectIDKey]]){
-                            NSNumber *interval = segment[kSegmentReminderKey];
+                            NSNumber *interval = (NSNumber *)segment[kSegmentReminderKey];
                             not.fireDate = [NSDate dateWithTimeInterval:interval.floatValue sinceDate:segment[kSegmentDateKey]];
                             found = YES;
                         }

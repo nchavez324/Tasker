@@ -53,10 +53,15 @@ static NSInteger const kEditContentViewTag  = 1;
             _segment[kEntryTitleKey] = @"";
         tf.text = _segment[kEntryTitleKey];
 
-        if(_segment[kSegmentReminderKey] == [NSNull null])
-            _segment[kSegmentReminderKey] = [Segment intervalForIndex:0];
+        if(_segment[kSegmentReminderKey] == [NSNull null]){
+            NSNumber *n = [Segment intervalForIndex:0];
+            _segment[kSegmentReminderKey] = (n)?n:[NSNull null];
+        }
+        
         UITableViewCell *reminderCell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:1 inSection:0]];
-        reminderCell.detailTextLabel.text = [Segment stringForReminderInterval:_segment[kSegmentReminderKey]];
+        
+        NSObject *o = _segment[kSegmentReminderKey];
+        reminderCell.detailTextLabel.text = [Segment stringForReminderInterval:(o)?(NSNumber *)o:nil];
         
         if(_segment[kSegmentDateKey] == [NSNull null])
             _segment[kSegmentDateKey] = [NSDate date];
@@ -120,8 +125,10 @@ static NSInteger const kEditContentViewTag  = 1;
             case 1:{
                 cell = [tableView dequeueReusableCellWithIdentifier:@"SegmentReminderCell"];
                 cell.textLabel.text = NSLocalizedString(@"REMINDER", @"Reminder");
-                if(_segment && _segment[kSegmentReminderKey] != [NSNull null])
-                    cell.detailTextLabel.text = [Segment stringForReminderInterval:_segment[kSegmentReminderKey]];
+                if(_segment){
+                    NSObject *o = _segment[kSegmentReminderKey];
+                    cell.detailTextLabel.text = [Segment stringForReminderInterval:(o)?(NSNumber *)o:nil];
+                }
                 break;
             }
             case 2:{
@@ -214,7 +221,7 @@ static NSInteger const kEditContentViewTag  = 1;
             [self closeDatePicker];
     }else if(indexPath.section == 0 && indexPath.row == 1){
         RIPReminderViewController *reminderVc = [[RIPReminderViewController alloc] initWithStyle:UITableViewStyleGrouped];
-        reminderVc.timeInterval = _segment[kSegmentDateKey];
+        reminderVc.timeInterval = (_segment[kSegmentReminderKey] != [NSNull null])?(NSNumber *)_segment[kSegmentReminderKey]:nil;
         reminderVc.editSegVc = self;
         [self.navigationController pushViewController:reminderVc animated:YES];
     }
@@ -308,8 +315,6 @@ static NSInteger const kEditContentViewTag  = 1;
     
     doneSeg[kEntryPositionKey] = _segment[kEntryPositionKey];
     
-    NSLog(@"%@", doneSeg);
-    
     [_segementsVC updateSegmentsWith:doneSeg];
     [self.navigationController popViewControllerAnimated:YES];
 }
@@ -324,10 +329,8 @@ static NSInteger const kEditContentViewTag  = 1;
     [self.tableView setEditing:NO animated:YES];
 }
 
-- (void)updateReminderInterval:(NSObject *)interval {
-    NSLog(@"%@", _segment[kSegmentReminderKey]);
-    _segment[kSegmentReminderKey] = interval;
-    NSLog(@"%@", _segment[kSegmentReminderKey]);
+- (void)updateReminderInterval:(NSNumber *)interval {
+    _segment[kSegmentReminderKey] = interval?interval:[NSNull null];
     [self.tableView reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:1 inSection:0]] withRowAnimation:UITableViewRowAnimationNone];
 }
 

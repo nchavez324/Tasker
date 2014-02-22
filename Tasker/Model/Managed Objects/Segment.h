@@ -25,10 +25,10 @@ extern NSString * const kSegmentReminderKey;
 @property (nonatomic, retain) NSNumber * reminder;
 @property (nonatomic, retain) Note *note;
 
-+ (NSInteger)indexForInterval:(NSObject *)interval;
++ (NSInteger)indexForInterval:(NSNumber *)interval;
 + (NSInteger)numReminderIntervals;
-+ (NSObject *)intervalForIndex:(NSInteger)index;
-+ (NSString *)stringForReminderInterval:(NSObject *)interval;
++ (NSNumber *)intervalForIndex:(NSInteger)index;
++ (NSString *)stringForReminderInterval:(NSNumber *)interval;
 + (BOOL)scheduleNotification:(NSDictionary *)segment withSectionName:(NSString *)sectionName;
 
 @end
