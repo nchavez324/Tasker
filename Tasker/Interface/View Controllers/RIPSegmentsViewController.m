@@ -180,18 +180,17 @@
     RIPEditSegmentViewController *editSeg = (RIPEditSegmentViewController *)[sb instantiateViewControllerWithIdentifier:@"RIPEditSegmentViewController"];
     editSeg.segementsVC = self;
     editSeg.title = NSLocalizedString(@"EDIT_TASK", @"Edit Task");
-    editSeg.segment = _segments[indexPath.row];
+    NSMutableDictionary *s = [NSMutableDictionary dictionaryWithDictionary:_segments[indexPath.row]];
+    editSeg.segment = s;
     [self.navigationController pushViewController:editSeg animated:YES];
 }
 
 - (void)addSegment {
-    RIPCompletion completion = RIPCompletionNotStarted;
-    NSDate *date = [NSDate date];
     NSMutableDictionary *entry = [NSMutableDictionary dictionary];
-    entry[kEntryTitleKey] = @"";
-    entry[kSegmentCompletionKey] = [NSNumber numberWithInt:completion];
-    entry[kSegmentContentKey] = @"";
-    entry[kSegmentDateKey] = date;
+    entry[kEntryTitleKey] = [NSNull null];
+    entry[kSegmentCompletionKey] = [NSNull null];
+    entry[kSegmentContentKey] = [NSNull null];
+    entry[kSegmentDateKey] = [NSNull null];
     entry[kSegmentReminderKey] = [NSNull null];
     entry[kEntryPositionKey] = [NSNumber numberWithInteger:_segments.count];
     
@@ -256,7 +255,16 @@
                     Segment *mo = (Segment *)[moc objectWithID:entry[kEntryObjectIDKey]];
                     [mo setPosition:[NSNumber numberWithInteger:[(NSNumber *)entry[kEntryPositionKey] integerValue]]];
                 }
-            } completion:nil];
+            } completion:^(BOOL s) {
+                NSArray *nots = [[UIApplication sharedApplication] scheduledLocalNotifications];
+                UILocalNotification *toRemove = nil;
+                for (UILocalNotification *not in nots) {
+                    if([mid.description isEqual:not.userInfo[kEntryObjectIDKey]])
+                        toRemove = not;
+                }
+                if(toRemove)
+                    [[UIApplication sharedApplication] cancelLocalNotification:toRemove];
+            }];
         }
     }];
 }
@@ -296,19 +304,65 @@
         [[RIPCoreDataController shared] createSegments:@[segment] forNote:(NSManagedObjectID *)_note[kEntryObjectIDKey] completion:^(NSArray *objIDs) {
             //main
             segment[kEntryObjectIDKey] = (NSManagedObjectID *)objIDs[0];
+            [Segment scheduleNotification:segment];
         }];
     }else{
         for (NSInteger i = 0; i < _segments.count; i++) {
             NSMutableDictionary *entry = _segments[i];
             if([entry[kEntryObjectIDKey] isEqual:segment[kEntryObjectIDKey]]){
                 entry[kEntryTitleKey] = segment[kEntryTitleKey];
-                entry[kSegmentDateKey] = segment[kSegmentDateKey];
                 entry[kSegmentContentKey] = segment[kSegmentContentKey];
+                [self updateNotificationsForOld:entry new:segment];
+                entry[kSegmentDateKey] = segment[kSegmentDateKey];
                 entry[kSegmentReminderKey] = segment[kSegmentReminderKey];
                 [self.tableView reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:i inSection:0]] withRowAnimation:UITableViewRowAnimationNone];
                 [self updateSegments];
             }
         }
+    }
+}
+
+- (void)updateNotificationsForOld:(NSDictionary *)entry new:(NSDictionary *)segment {
+    if(entry[kSegmentReminderKey] != [NSNull null]){
+        if(segment[kSegmentReminderKey] != [NSNull null]){
+            //check for change in date or interval
+            if(![segment[kSegmentReminderKey] isEqual:entry[kSegmentReminderKey]] ||
+               ![segment[kSegmentDateKey] isEqual:entry[kSegmentDateKey]]){
+                NSArray *notifications = [[UIApplication sharedApplication] scheduledLocalNotifications];
+                BOOL found = NO;
+                for (UILocalNotification *not in notifications) {
+                    NSDictionary *d = not.userInfo;
+                    if(d[kEntryObjectIDKey]){
+                        NSManagedObjectID *moid = (NSManagedObjectID *)d[kEntryObjectIDKey];
+                        if([moid.description isEqual:entry[kEntryObjectIDKey]]){
+                            NSNumber *interval = segment[kSegmentReminderKey];
+                            not.fireDate = [NSDate dateWithTimeInterval:interval.floatValue sinceDate:segment[kSegmentDateKey]];
+                            found = YES;
+                        }
+                    }
+                }
+                if(!found)
+                    [Segment scheduleNotification:segment];
+            }
+        }else{
+            //or check if removing reminder
+            NSArray *notifications = [[UIApplication sharedApplication] scheduledLocalNotifications];
+            UILocalNotification *toRemove = nil;
+            for (UILocalNotification *not in notifications) {
+                NSDictionary *d = not.userInfo;
+                if(d[kEntryObjectIDKey]){
+                    NSManagedObjectID *moid = (NSManagedObjectID *)d[kEntryObjectIDKey];
+                    if([moid.description isEqual:entry[kEntryObjectIDKey]]){
+                        toRemove = not;
+                    }
+                }
+            }
+            if(toRemove)
+                [[UIApplication sharedApplication] cancelLocalNotification:toRemove];
+        }
+    }else if(segment[kSegmentReminderKey] != [NSNull null]){
+        //simply make a new one
+        [Segment scheduleNotification:segment];
     }
 }
 

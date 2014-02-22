@@ -25,8 +25,7 @@ static NSInteger const kEditContentViewTag  = 1;
 
 @interface RIPEditSegmentViewController ()
 @property (assign, nonatomic) BOOL datePickerVisible;
-@property (strong, nonatomic) NSNumber *timeInterval;
-@property (strong, nonatomic) NSDate *date;
+@property (assign, nonatomic) BOOL beganEditing;
 @end
 
 @implementation RIPEditSegmentViewController
@@ -40,7 +39,6 @@ static NSInteger const kEditContentViewTag  = 1;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    _date = [NSDate date];
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(cancelButton)];
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(doneButton)];
 }
@@ -48,22 +46,35 @@ static NSInteger const kEditContentViewTag  = 1;
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     _datePickerVisible = NO;
-    if(_segment){
+    if(_segment && !_beganEditing){
         UITableViewCell *titleCell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
         UITextField *tf = (UITextField *)[titleCell viewWithTag:kEditTitleFieldTag];
-        if(tf.text.length == 0)
-            tf.text = _segment[kEntryTitleKey];
+        if(_segment[kEntryTitleKey] == [NSNull null])
+            _segment[kEntryTitleKey] = @"";
+        tf.text = _segment[kEntryTitleKey];
+
+        if(_segment[kSegmentReminderKey] == [NSNull null])
+            _segment[kSegmentReminderKey] = [Segment intervalForIndex:0];
+        UITableViewCell *reminderCell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:1 inSection:0]];
+        reminderCell.detailTextLabel.text = [Segment stringForReminderInterval:_segment[kSegmentReminderKey]];
         
-        if(_timeInterval == nil)
-            _timeInterval = _segment[kSegmentReminderKey];
-        
-        if(_date == nil)
-            _date = _segment[kSegmentDateKey];
+        if(_segment[kSegmentDateKey] == [NSNull null])
+            _segment[kSegmentDateKey] = [NSDate date];
+        UITableViewCell *dateCell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:2 inSection:0]];
+        UILabel *dueLabel = (UILabel *)[dateCell viewWithTag:kEditDateDueLabelTag];
+        UILabel *dateLabel = (UILabel *)[dateCell viewWithTag:kEditDateDateLabelTag];
+        UILabel *timeLabel = (UILabel *)[dateCell viewWithTag:kEditDateTimeLabelTag];
+        dueLabel.text = NSLocalizedString(@"DUE", @"Due");
+        dateLabel.text = [self dateStringFromDate:_segment[kSegmentDateKey]];
+        timeLabel.text = [self timeStringFromTime:_segment[kSegmentDateKey]];
         
         UITableViewCell *contentCell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:1]];
         UITextView *tv = (UITextView *)[contentCell viewWithTag:kEditContentViewTag];
-        if(tv.text.length == 0)
-            tv.text = _segment[kSegmentContentKey];
+        if(_segment[kSegmentContentKey] == [NSNull null])
+            _segment[kSegmentContentKey] = @"";
+        tv.text = _segment[kSegmentContentKey];
+        
+        _beganEditing = YES;
     }
 }
 
@@ -102,12 +113,15 @@ static NSInteger const kEditContentViewTag  = 1;
                 UITextField *tf = (UITextField *)[cell viewWithTag:kEditTitleFieldTag];
                 [tf setPlaceholder:NSLocalizedString(@"TITLE", @"Title")];
                 [tf setBorderStyle:UITextBorderStyleNone];
+                if(_segment && _segment[kEntryTitleKey] != [NSNull null])
+                    tf.text = _segment[kEntryTitleKey];
                 break;
             }
             case 1:{
                 cell = [tableView dequeueReusableCellWithIdentifier:@"SegmentReminderCell"];
                 cell.textLabel.text = NSLocalizedString(@"REMINDER", @"Reminder");
-                cell.detailTextLabel.text = [Segment stringForReminderInterval:_timeInterval];
+                if(_segment && _segment[kSegmentReminderKey] != [NSNull null])
+                    cell.detailTextLabel.text = [Segment stringForReminderInterval:_segment[kSegmentReminderKey]];
                 break;
             }
             case 2:{
@@ -116,8 +130,10 @@ static NSInteger const kEditContentViewTag  = 1;
                 UILabel *dateLabel = (UILabel *)[cell viewWithTag:kEditDateDateLabelTag];
                 UILabel *timeLabel = (UILabel *)[cell viewWithTag:kEditDateTimeLabelTag];
                 dueLabel.text = NSLocalizedString(@"DUE", @"Due");
-                dateLabel.text = [self dateStringFromDate:_date];
-                timeLabel.text = [self timeStringFromTime:_date];
+                if(_segment && _segment[kSegmentDateKey] != [NSNull null]){
+                    dateLabel.text = [self dateStringFromDate:_segment[kSegmentDateKey]];
+                    timeLabel.text = [self timeStringFromTime:_segment[kSegmentDateKey]];
+                }
                 break;
             }
             case 3:{
@@ -131,7 +147,8 @@ static NSInteger const kEditContentViewTag  = 1;
                     datePicker.frame = CGRectMake((cellBounds.size.width - pickerFrame.size.width)/2.0, (cellBounds.size.height - pickerFrame.size.height)/2.0, pickerFrame.size.width, pickerFrame.size.height);
                 }
                 UIDatePicker *datePicker = (UIDatePicker *)[cell viewWithTag:kEditDatePickerTag];
-                datePicker.date = _date;
+                if(_segment && _segment[kSegmentDateKey] != [NSNull null])
+                    datePicker.date = _segment[kSegmentDateKey];
                 break;
             }
             default:
@@ -143,6 +160,8 @@ static NSInteger const kEditContentViewTag  = 1;
         tv.editable = YES;
         tv.placeholder = NSLocalizedString(@"NOTES", @"Notes");
         tv.placeholderTextColor = [UIColor lightGrayColor];
+        if(_segment && _segment[kSegmentContentKey] != [NSNull null])
+            tv.text = _segment[kSegmentContentKey];
     }
     
     return cell;
@@ -195,7 +214,7 @@ static NSInteger const kEditContentViewTag  = 1;
             [self closeDatePicker];
     }else if(indexPath.section == 0 && indexPath.row == 1){
         RIPReminderViewController *reminderVc = [[RIPReminderViewController alloc] initWithStyle:UITableViewStyleGrouped];
-        reminderVc.timeInterval = _timeInterval;
+        reminderVc.timeInterval = _segment[kSegmentDateKey];
         reminderVc.editSegVc = self;
         [self.navigationController pushViewController:reminderVc animated:YES];
     }
@@ -220,63 +239,78 @@ static NSInteger const kEditContentViewTag  = 1;
 }
 
 - (IBAction)pickerValueChanged:(UIDatePicker *)sender {
-    _date = sender.date;
+    _segment[kSegmentDateKey] = sender.date;
     UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:2 inSection:0]];
     UILabel *dateLabel = (UILabel *)[cell viewWithTag:kEditDateDateLabelTag];
     UILabel *timeLabel = (UILabel *)[cell viewWithTag:kEditDateTimeLabelTag];
-    dateLabel.text = [self dateStringFromDate:_date];
-    timeLabel.text = [self timeStringFromTime:_date];
+    dateLabel.text = [self dateStringFromDate:_segment[kSegmentDateKey]];
+    timeLabel.text = [self timeStringFromTime:_segment[kSegmentDateKey]];
     [self.tableView reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:2 inSection:0]] withRowAnimation:UITableViewRowAnimationNone];
     [self hideKeyboard];
 }
 
-- (void)textViewDidBeginEditing:(UITextView *)textView {
-    /*NSLog(@">");
-    if(_datePickerVisible)
-        [self closeDatePicker];
-     */
+- (IBAction)titleEditingDidEnd:(UITextField *)sender {
+    NSString *titleText = [sender.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+    if(titleText && titleText.length > 0)
+        _segment[kEntryTitleKey] = titleText;
+
 }
 
-- (IBAction)textEditingBegan:(id)sender {
-    /*NSLog(@"<");
-    if(_datePickerVisible)
-        [self closeDatePicker];
-     */
+- (void)textFieldDidEndEditing:(UITextField *)textField {
+    NSString *titleText = [textField.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+    if(titleText && titleText.length > 0)
+        _segment[kEntryTitleKey] = titleText;
 }
 
 - (void)cancelButton {
     [self.navigationController popViewControllerAnimated:YES];
 }
 
-- (void)doneButton {
-    NSMutableDictionary *segment = [NSMutableDictionary dictionary];
-    
+- (void)collectData {
     UITableViewCell *titleCell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
-    UITextField *titleField = (UITextField *)[titleCell viewWithTag:kEditTitleFieldTag];
-    NSString *t = [titleField.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
-    if(t == nil || t.length == 0)
-        segment[kEntryTitleKey] = NSLocalizedString(@"UNTITLED", @"Untitled");
-    else
-        segment[kEntryTitleKey] = t;
-    
-    segment[kSegmentDateKey] = _date;
+    UITextField *tf = (UITextField *)[titleCell viewWithTag:kEditTitleFieldTag];
+    NSString *titleText = [tf.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+    if(titleText && titleText.length > 0)
+        _segment[kEntryTitleKey] = titleText;
     
     UITableViewCell *contentCell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:1]];
-    UITextView *textView = (UITextView *)[contentCell viewWithTag:kEditContentViewTag];
-    segment[kSegmentContentKey] = [textView.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
-    if(_segment[kEntryObjectIDKey])
-        segment[kEntryObjectIDKey] = _segment[kEntryObjectIDKey];
+    tf = (UITextField *)[contentCell viewWithTag:kEditContentViewTag];
+    NSString *contentText = [tf.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+    if(contentText && contentText.length > 0)
+        _segment[kSegmentContentKey] = contentText;
+}
+
+- (void)doneButton {
     
-    if(_segment[kSegmentCompletionKey])
-        segment[kSegmentCompletionKey] = _segment[kSegmentCompletionKey];
+    [self collectData];
+    
+    NSMutableDictionary *doneSeg = [NSMutableDictionary dictionary];
+    NSString *title = _segment[kEntryTitleKey];
+    if(title && title.length > 0)
+        doneSeg[kEntryTitleKey] = title;
     else
-        segment[kSegmentCompletionKey] = [NSNumber numberWithInt:RIPCompletionNotStarted];
+        doneSeg[kEntryTitleKey] = NSLocalizedString(@"UNTITLED", @"Untitled");
     
-    segment[kSegmentReminderKey] = _timeInterval;
+    doneSeg[kSegmentDateKey] = _segment[kSegmentDateKey];
     
-    segment[kEntryPositionKey] = _segment[kEntryPositionKey];
+    NSString *content = _segment[kSegmentContentKey];
+    doneSeg[kSegmentContentKey] = content;
+        
+    if(_segment[kEntryObjectIDKey] && _segment[kEntryObjectIDKey] != [NSNull null])
+        doneSeg[kEntryObjectIDKey] = _segment[kEntryObjectIDKey];
     
-    [_segementsVC updateSegmentsWith:segment];
+    if(_segment[kSegmentCompletionKey] != [NSNull null])
+        doneSeg[kSegmentCompletionKey] = _segment[kSegmentCompletionKey];
+    else
+        doneSeg[kSegmentCompletionKey] = [NSNumber numberWithInt:RIPCompletionNotStarted];
+    
+    doneSeg[kSegmentReminderKey] = _segment[kSegmentReminderKey];
+    
+    doneSeg[kEntryPositionKey] = _segment[kEntryPositionKey];
+    
+    NSLog(@"%@", doneSeg);
+    
+    [_segementsVC updateSegmentsWith:doneSeg];
     [self.navigationController popViewControllerAnimated:YES];
 }
 
@@ -291,7 +325,9 @@ static NSInteger const kEditContentViewTag  = 1;
 }
 
 - (void)updateReminderInterval:(NSObject *)interval {
-    _timeInterval = (NSNumber *)interval;
+    NSLog(@"%@", _segment[kSegmentReminderKey]);
+    _segment[kSegmentReminderKey] = interval;
+    NSLog(@"%@", _segment[kSegmentReminderKey]);
     [self.tableView reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:1 inSection:0]] withRowAnimation:UITableViewRowAnimationNone];
 }
 

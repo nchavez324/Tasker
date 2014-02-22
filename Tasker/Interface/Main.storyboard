@@ -270,7 +270,8 @@
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <textInputTraits key="textInputTraits"/>
                                             <connections>
-                                                <action selector="textEditingBegan:" destination="e3M-hH-3Jy" eventType="editingDidBegin" id="yot-4O-YGz"/>
+                                                <action selector="titleEditingDidEnd:" destination="e3M-hH-3Jy" eventType="touchCancel" id="XdM-cd-xjf"/>
+                                                <outlet property="delegate" destination="e3M-hH-3Jy" id="cxp-ZZ-fKf"/>
                                             </connections>
                                         </textField>
                                     </subviews>
@@ -382,9 +383,6 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                             <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                             <dataDetectorType key="dataDetectorTypes" phoneNumber="YES" link="YES" address="YES"/>
-                                            <connections>
-                                                <outlet property="delegate" destination="e3M-hH-3Jy" id="lue-ZO-EDR"/>
-                                            </connections>
                                         </textView>
                                     </subviews>
                                 </tableViewCellContentView>

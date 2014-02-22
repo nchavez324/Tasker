@@ -10,13 +10,12 @@
 
 @class RIPSegmentsViewController;
 
-@interface RIPEditSegmentViewController  : UITableViewController <UITextViewDelegate>
+@interface RIPEditSegmentViewController  : UITableViewController <UITextFieldDelegate>
 @property (strong, nonatomic) NSMutableDictionary *segment;
 @property (weak, nonatomic) RIPSegmentsViewController *segementsVC;
 
 - (IBAction)pickerValueChanged:(UIDatePicker *)sender;
-- (IBAction)textEditingBegan:(id)sender;
-
+- (IBAction)titleEditingDidEnd:(UITextField *)sender;
 - (void)updateReminderInterval:(NSObject *)interval;
 
 @end
