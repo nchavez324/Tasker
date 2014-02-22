@@ -18,9 +18,20 @@ next update will probably include reminders/notifications.
 You can get it here:
 <a href="https://itunes.apple.com/us/app/tasker-by-nick-chavez/id811348474?mt=8&uo=4" target="itunes_store">Tasker - by Nick Chavez - Nicolas Chavez</a>
 
-================================
+Screenshots
+===========
+<br/>
+![Msin Page](Tasker/Screenshots/img_sections.png)
+<br/>
+![Section Page](Tasker/Screenshots/img_notes.png)
+<br/>
+![Tasks Page](Tasker/Screenshots/img_tasks.png)
+<br/>
+![Edit Task Page](Tasker/Screenshots/img_edit_task.png)
 
-The MIT License (MIT) Copyright © 2014 Nick Chavez
+The MIT License (MIT) 
+================================
+Copyright © 2014 Nick Chavez
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the “Software”), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
 
