@@ -304,7 +304,7 @@
         [[RIPCoreDataController shared] createSegments:@[segment] forNote:(NSManagedObjectID *)_note[kEntryObjectIDKey] completion:^(NSArray *objIDs) {
             //main
             segment[kEntryObjectIDKey] = (NSManagedObjectID *)objIDs[0];
-            [Segment scheduleNotification:segment];
+            [Segment scheduleNotification:segment withSectionName:_note[kEntryTitleKey]];
         }];
     }else{
         for (NSInteger i = 0; i < _segments.count; i++) {
@@ -342,7 +342,7 @@
                     }
                 }
                 if(!found)
-                    [Segment scheduleNotification:segment];
+                    [Segment scheduleNotification:segment withSectionName:_note[kEntryTitleKey]];
             }
         }else{
             //or check if removing reminder
@@ -362,7 +362,7 @@
         }
     }else if(segment[kSegmentReminderKey] != [NSNull null]){
         //simply make a new one
-        [Segment scheduleNotification:segment];
+        [Segment scheduleNotification:segment withSectionName:_note[kEntryTitleKey]];
     }
 }
 

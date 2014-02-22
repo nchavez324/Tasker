@@ -29,6 +29,6 @@ extern NSString * const kSegmentReminderKey;
 + (NSInteger)numReminderIntervals;
 + (NSObject *)intervalForIndex:(NSInteger)index;
 + (NSString *)stringForReminderInterval:(NSObject *)interval;
-+ (BOOL)scheduleNotification:(NSDictionary *)segment;
++ (BOOL)scheduleNotification:(NSDictionary *)segment withSectionName:(NSString *)sectionName;
 
 @end

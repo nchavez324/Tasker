@@ -113,16 +113,16 @@ static NSString *daysBefore = @"REM_DAYS_BEFORE";
     return s;
 }
 
-+ (BOOL)scheduleNotification:(NSDictionary *)segment {
++ (BOOL)scheduleNotification:(NSDictionary *)segment withSectionName:(NSString *)sectionName{
     if(segment[kSegmentReminderKey] != [NSNull null]){
         NSNumber *interval = segment[kSegmentReminderKey];
         UILocalNotification *notification = [[UILocalNotification alloc] init];
         NSDate *date = segment[kSegmentDateKey];
         notification.fireDate = [NSDate dateWithTimeInterval:interval.floatValue sinceDate:date];
-        NSLog(@"%@", notification.fireDate);
         notification.userInfo = @{kEntryObjectIDKey: [NSString stringWithFormat:@"%@", segment[kEntryObjectIDKey]]};
         notification.alertAction = @"";
-        notification.alertBody = segment[kEntryTitleKey];
+        notification.alertBody = [NSString stringWithFormat:@"%@: %@", sectionName, segment[kEntryTitleKey]];
+        notification.soundName = UILocalNotificationDefaultSoundName;
         [[UIApplication sharedApplication] scheduleLocalNotification:notification];
         return YES;
     }
