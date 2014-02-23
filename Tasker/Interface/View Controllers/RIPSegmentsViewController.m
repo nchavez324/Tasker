@@ -312,7 +312,9 @@
             if([entry[kEntryObjectIDKey] isEqual:segment[kEntryObjectIDKey]]){
                 entry[kEntryTitleKey] = segment[kEntryTitleKey];
                 entry[kSegmentContentKey] = segment[kSegmentContentKey];
+                
                 [self updateNotificationsForOld:entry new:segment];
+                
                 entry[kSegmentDateKey] = segment[kSegmentDateKey];
                 entry[kSegmentReminderKey] = segment[kSegmentReminderKey];
                 [self.tableView reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:i inSection:0]] withRowAnimation:UITableViewRowAnimationNone];
@@ -326,19 +328,19 @@
     if(entry[kSegmentReminderKey] != [NSNull null]){
         if(segment[kSegmentReminderKey] != [NSNull null]){
             //check for change in date or interval
-            if(![segment[kSegmentReminderKey] isEqual:entry[kSegmentReminderKey]] ||
-               ![segment[kSegmentDateKey] isEqual:entry[kSegmentDateKey]]){
+            if(![segment[kSegmentReminderKey] isEqualToNumber:entry[kSegmentReminderKey]] ||
+               ![segment[kSegmentDateKey] isEqualToDate:entry[kSegmentDateKey]]){
                 NSArray *notifications = [[UIApplication sharedApplication] scheduledLocalNotifications];
                 BOOL found = NO;
                 for (UILocalNotification *not in notifications) {
                     NSDictionary *d = not.userInfo;
-                    if(d[kEntryObjectIDKey]){
-                        NSManagedObjectID *moid = (NSManagedObjectID *)d[kEntryObjectIDKey];
-                        if([moid.description isEqual:entry[kEntryObjectIDKey]]){
-                            NSNumber *interval = (NSNumber *)segment[kSegmentReminderKey];
-                            not.fireDate = [NSDate dateWithTimeInterval:interval.floatValue sinceDate:segment[kSegmentDateKey]];
-                            found = YES;
-                        }
+                    NSString *moidStr = (NSString *)d[kEntryObjectIDKey];
+                    NSString *entryMoidStr = [(NSManagedObjectID *)entry[kEntryObjectIDKey] description];
+                    
+                    if([moidStr isEqualToString:entryMoidStr]){
+                        NSNumber *interval = (NSNumber *)segment[kSegmentReminderKey];
+                        not.fireDate = [NSDate dateWithTimeInterval:(interval.floatValue==0)?0:(-1*interval.floatValue) sinceDate:segment[kSegmentDateKey]];
+                        found = YES;
                     }
                 }
                 if(!found)
@@ -350,11 +352,11 @@
             UILocalNotification *toRemove = nil;
             for (UILocalNotification *not in notifications) {
                 NSDictionary *d = not.userInfo;
-                if(d[kEntryObjectIDKey]){
-                    NSManagedObjectID *moid = (NSManagedObjectID *)d[kEntryObjectIDKey];
-                    if([moid.description isEqual:entry[kEntryObjectIDKey]]){
-                        toRemove = not;
-                    }
+                NSString *entryMoidStr = [(NSManagedObjectID *)entry[kEntryObjectIDKey] description];
+                NSString *moidStr = d[kEntryObjectIDKey];
+            
+                if([moidStr isEqualToString:entryMoidStr]){
+                    toRemove = not;
                 }
             }
             if(toRemove)
