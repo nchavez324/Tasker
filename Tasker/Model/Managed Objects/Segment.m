@@ -8,6 +8,7 @@
 
 #import "Segment.h"
 #import "Note.h"
+#import "NSDate+Utils.h"
 
 static NSArray * kReminderIntervals = nil;
 
@@ -121,8 +122,9 @@ static NSString *daysBefore = @"REM_DAYS_BEFORE";
         notification.fireDate = [NSDate dateWithTimeInterval:(interval.floatValue==0)?0:(-1*interval.floatValue) sinceDate:date];
         notification.userInfo = @{kEntryObjectIDKey: [(NSManagedObjectID *)segment[kEntryObjectIDKey] description]};
         notification.alertAction = @"";
-        notification.alertBody = [NSString stringWithFormat:@"%@:\n%@", sectionName, segment[kEntryTitleKey]];
+        notification.alertBody = [NSString stringWithFormat:@"%@:\n(%@) %@", sectionName, [date naturalString], segment[kEntryTitleKey]];
         notification.soundName = UILocalNotificationDefaultSoundName;
+        NSLog(@"Scheduled %@ for %@", notification.alertBody, notification.fireDate);
         [[UIApplication sharedApplication] scheduleLocalNotification:notification];
         return YES;
     }

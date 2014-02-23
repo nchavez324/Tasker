@@ -133,11 +133,15 @@
     }
     
     NSURL *storeURL = [[self applicationDocumentsDirectory] URLByAppendingPathComponent:@"Tasker.sqlite"];
+    NSURL *oldStoreURL = [[self applicationDocumentsDirectory] URLByAppendingPathComponent:@"Notepad.sqlite"];
     
-    _newStore = ![[NSFileManager defaultManager] fileExistsAtPath:[storeURL path]];
+    BOOL existsOldURL = [[NSFileManager defaultManager] fileExistsAtPath:[oldStoreURL path]];
+    BOOL existsCurURL = [[NSFileManager defaultManager] fileExistsAtPath:[storeURL path]];
+    _newStore = !(existsCurURL || existsOldURL);
+    NSURL *url = (existsOldURL)?oldStoreURL:storeURL;
     NSError *error = nil;
     _persistentStoreCoordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:[self managedObjectModel]];
-    if(![_persistentStoreCoordinator addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:storeURL options:@{NSMigratePersistentStoresAutomaticallyOption:@YES, NSInferMappingModelAutomaticallyOption:@YES} error:&error]){
+    if(![_persistentStoreCoordinator addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:url options:@{NSMigratePersistentStoresAutomaticallyOption:@YES, NSInferMappingModelAutomaticallyOption:@YES} error:&error]){
         /*
          Replace this implementation with code to handle the error appropriately.
          

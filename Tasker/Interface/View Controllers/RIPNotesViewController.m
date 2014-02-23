@@ -46,7 +46,7 @@
             [self.navigationController.navigationBar setBarTintColor:[UIColor colorWithColor:_section[kSectionColorKey] alpha:0.8]];
             [self.navigationController.navigationBar setTranslucent:YES];
             [self.navigationController.navigationBar setTintColor:[UIColor whiteColor]];
-            //[[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleBlackTranslucent animated:YES];
+            [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent animated:YES];
             [self setNeedsStatusBarAppearanceUpdate];
         }else{
             [self.navigationController.navigationBar setTintColor:_section[kSectionColorKey]];

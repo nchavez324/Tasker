@@ -7,6 +7,7 @@
 //
 
 #import "RIPCompletion.h"
+#import "NSDate+Utils.h"
 #import "Segment.h"
 #import "RIPReminderViewController.h"
 #import "SZTextView.h"
@@ -63,8 +64,13 @@ static NSInteger const kEditContentViewTag  = 1;
         NSObject *o = _segment[kSegmentReminderKey];
         reminderCell.detailTextLabel.text = [Segment stringForReminderInterval:(o)?(NSNumber *)o:nil];
         
-        if(_segment[kSegmentDateKey] == [NSNull null])
-            _segment[kSegmentDateKey] = [NSDate date];
+        if(_segment[kSegmentDateKey] == [NSNull null]){
+            NSDate *d = [NSDate date];
+            NSDateComponents *dateComps = [[NSCalendar currentCalendar] components:NSSecondCalendarUnit fromDate:d];
+            [dateComps setSecond:-[dateComps second]];
+            d = [[NSCalendar currentCalendar] dateByAddingComponents:dateComps toDate:d options:0];
+            _segment[kSegmentDateKey] = d;
+        }
         UITableViewCell *dateCell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:2 inSection:0]];
         UILabel *dueLabel = (UILabel *)[dateCell viewWithTag:kEditDateDueLabelTag];
         UILabel *dateLabel = (UILabel *)[dateCell viewWithTag:kEditDateDateLabelTag];
@@ -198,6 +204,8 @@ static NSInteger const kEditContentViewTag  = 1;
         dateLabel.textColor = [UIColor whiteColor];
         timeLabel.textColor = [UIColor whiteColor];
     }
+    NSDate *d = _segment[kSegmentDateKey];
+    _segment[kSegmentDateKey] = [d removeSeconds];
     [self.tableView endUpdates];
 }
 
@@ -246,7 +254,7 @@ static NSInteger const kEditContentViewTag  = 1;
 }
 
 - (IBAction)pickerValueChanged:(UIDatePicker *)sender {
-    _segment[kSegmentDateKey] = sender.date;
+    _segment[kSegmentDateKey] = [sender.date removeSeconds];
     UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:2 inSection:0]];
     UILabel *dateLabel = (UILabel *)[cell viewWithTag:kEditDateDateLabelTag];
     UILabel *timeLabel = (UILabel *)[cell viewWithTag:kEditDateTimeLabelTag];

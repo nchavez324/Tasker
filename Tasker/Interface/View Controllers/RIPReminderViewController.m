@@ -25,6 +25,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"Cell"];
+    self.title = NSLocalizedString(@"REMINDER", @"Reminder");
 }
 
 - (void)didReceiveMemoryWarning {

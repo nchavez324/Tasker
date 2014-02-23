@@ -10,4 +10,5 @@
 
 @interface NSDate (Utils)
 - (NSString *)naturalString;
+- (NSDate *)removeSeconds;
 @end

@@ -326,45 +326,29 @@
 
 - (void)updateNotificationsForOld:(NSDictionary *)entry new:(NSDictionary *)segment {
     if(entry[kSegmentReminderKey] != [NSNull null]){
-        if(segment[kSegmentReminderKey] != [NSNull null]){
-            //check for change in date or interval
-            if(![segment[kSegmentReminderKey] isEqualToNumber:entry[kSegmentReminderKey]] ||
-               ![segment[kSegmentDateKey] isEqualToDate:entry[kSegmentDateKey]]){
-                NSArray *notifications = [[UIApplication sharedApplication] scheduledLocalNotifications];
-                BOOL found = NO;
-                for (UILocalNotification *not in notifications) {
-                    NSDictionary *d = not.userInfo;
-                    NSString *moidStr = (NSString *)d[kEntryObjectIDKey];
-                    NSString *entryMoidStr = [(NSManagedObjectID *)entry[kEntryObjectIDKey] description];
-                    
-                    if([moidStr isEqualToString:entryMoidStr]){
-                        NSNumber *interval = (NSNumber *)segment[kSegmentReminderKey];
-                        not.fireDate = [NSDate dateWithTimeInterval:(interval.floatValue==0)?0:(-1*interval.floatValue) sinceDate:segment[kSegmentDateKey]];
-                        found = YES;
-                    }
-                }
-                if(!found)
-                    [Segment scheduleNotification:segment withSectionName:_note[kEntryTitleKey]];
-            }
-        }else{
-            //or check if removing reminder
-            NSArray *notifications = [[UIApplication sharedApplication] scheduledLocalNotifications];
-            UILocalNotification *toRemove = nil;
-            for (UILocalNotification *not in notifications) {
-                NSDictionary *d = not.userInfo;
-                NSString *entryMoidStr = [(NSManagedObjectID *)entry[kEntryObjectIDKey] description];
-                NSString *moidStr = d[kEntryObjectIDKey];
-            
-                if([moidStr isEqualToString:entryMoidStr]){
-                    toRemove = not;
-                }
-            }
-            if(toRemove)
-                [[UIApplication sharedApplication] cancelLocalNotification:toRemove];
-        }
+        [self cancelNotificationWithID:entry[kEntryObjectIDKey]];
+        if(segment[kSegmentReminderKey] != [NSNull null])
+            [Segment scheduleNotification:segment withSectionName:_note[kEntryTitleKey]];
+        
     }else if(segment[kSegmentReminderKey] != [NSNull null]){
         //simply make a new one
         [Segment scheduleNotification:segment withSectionName:_note[kEntryTitleKey]];
+    }
+}
+
+- (void)cancelNotificationWithID:(NSManagedObjectID *)moid{
+    NSArray *notifications = [[UIApplication sharedApplication] scheduledLocalNotifications];
+    UILocalNotification *toRemove = nil;
+    for (UILocalNotification *not in notifications) {
+        NSDictionary *d = not.userInfo;
+        NSString *entryMoidStr = moid.description;
+        NSString *moidStr = d[kEntryObjectIDKey];
+        if([moidStr isEqualToString:entryMoidStr])
+            toRemove = not;
+    }
+    if(toRemove){
+        NSLog(@"Removed %@ for %@", toRemove.alertBody, toRemove.fireDate);
+        [[UIApplication sharedApplication] cancelLocalNotification:toRemove];
     }
 }
 
