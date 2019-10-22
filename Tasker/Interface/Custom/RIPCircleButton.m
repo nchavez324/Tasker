@@ -60,10 +60,6 @@
     return _completion;
 }
 
-static inline int radToDeg(float rad){
-    return (int)((rad*180)/(M_PI));
-}
-
 + (UIImage *)circleForRect:(CGRect)rect color:(UIColor *)color completion:(float)completion{
     CGFloat scale = [UIScreen mainScreen].scale;
     UIGraphicsBeginImageContextWithOptions(rect.size, NO, scale);

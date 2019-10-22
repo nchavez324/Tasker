@@ -104,12 +104,33 @@
     return YES;
 }
 
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-    if(editingStyle == UITableViewCellEditingStyleDelete){
-        UIActionSheet *deleteConf = [[UIActionSheet alloc] initWithTitle:NSLocalizedString(@"ARE_YOU_SURE", @"Confirm deletion") delegate:self cancelButtonTitle:NSLocalizedString(@"CANCEL", @"Cancel") destructiveButtonTitle:NSLocalizedString(@"DELETE_SECTION", @"Delete Section") otherButtonTitles:nil];
-        deleteConf.tag = indexPath.row;
-        [deleteConf showInView:self.view];
-    }
+- (void)tableView:(UITableView *)tableView
+    commitEditingStyle:(UITableViewCellEditingStyle)editingStyle
+     forRowAtIndexPath:(NSIndexPath *)indexPath {
+  if (editingStyle != UITableViewCellEditingStyleDelete) {
+    return;
+  }
+  UIAlertController *alert = [UIAlertController
+      alertControllerWithTitle:NSLocalizedString(@"ARE_YOU_SURE",
+                                                 @"Confirm deletion")
+                       message:nil
+                preferredStyle:UIAlertControllerStyleActionSheet];
+
+  __weak typeof(self) weakSelf = self;
+  UIAlertAction *cancelAction =
+      [UIAlertAction actionWithTitle:NSLocalizedString(@"CANCEL", @"Cancel")
+                               style:UIAlertActionStyleCancel
+                             handler:nil];
+  UIAlertAction *deleteAction = [UIAlertAction
+      actionWithTitle:NSLocalizedString(@"DELETE_SECTION", @"Delete Section")
+                style:UIAlertActionStyleDestructive
+              handler:^(UIAlertAction *action) {
+                [weakSelf didPressDeleteSection:indexPath.row];
+              }];
+
+  [alert addAction:cancelAction];
+  [alert addAction:deleteAction];
+  [self presentViewController:alert animated:YES completion:nil];
 }
 
 - (void)setEditing:(BOOL)editing animated:(BOOL)animated {
@@ -241,11 +262,12 @@
     }];
 }
 
-- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
-    if(buttonIndex == actionSheet.destructiveButtonIndex){
-        [self deleteSection:actionSheet.tag];
-        [self.tableView deleteRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:actionSheet.tag inSection:0]] withRowAnimation:UITableViewRowAnimationFade];
-    }
+- (void)didPressDeleteSection:(NSInteger)sectionIndex {
+  [self deleteSection:sectionIndex];
+  NSArray<NSIndexPath *> *indexPaths =
+      @[ [NSIndexPath indexPathForRow:sectionIndex inSection:0] ];
+  [self.tableView deleteRowsAtIndexPaths:indexPaths
+                        withRowAnimation:UITableViewRowAnimationFade];
 }
 
 @end
