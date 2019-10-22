@@ -26,10 +26,6 @@
 		01943A9418B98455005137C2 /* img_notes.png in Resources */ = {isa = PBXBuildFile; fileRef = 01943A9018B98455005137C2 /* img_notes.png */; };
 		01943A9518B98455005137C2 /* img_sections.png in Resources */ = {isa = PBXBuildFile; fileRef = 01943A9118B98455005137C2 /* img_sections.png */; };
 		01943A9618B98455005137C2 /* img_tasks.png in Resources */ = {isa = PBXBuildFile; fileRef = 01943A9218B98455005137C2 /* img_tasks.png */; };
-		019A762418B71EA200113DC4 /* CHANGELOG.md in Resources */ = {isa = PBXBuildFile; fileRef = 019A761E18B71EA200113DC4 /* CHANGELOG.md */; };
-		019A762518B71EA200113DC4 /* SZTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 019A762118B71EA200113DC4 /* SZTextView.m */; };
-		019A762618B71EA200113DC4 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 019A762218B71EA200113DC4 /* LICENSE */; };
-		019A762718B71EA200113DC4 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 019A762318B71EA200113DC4 /* README.md */; };
 		019A763418B71ECE00113DC4 /* Default-7-586@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 019A762918B71ECE00113DC4 /* Default-7-586@2x.png */; };
 		019A763518B71ECE00113DC4 /* Default-7@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 019A762A18B71ECE00113DC4 /* Default-7@2x.png */; };
 		019A763618B71ECE00113DC4 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 019A762B18B71ECE00113DC4 /* Default.png */; };
@@ -65,6 +61,7 @@
 		019A768F18B7213C00113DC4 /* RIPSectionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 019A768218B7213C00113DC4 /* RIPSectionsViewController.m */; };
 		019A769018B7213C00113DC4 /* RIPSegmentsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 019A768418B7213C00113DC4 /* RIPSegmentsViewController.m */; };
 		037DBC4E235FADC100397761 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 037DBC4D235FADC100397761 /* LaunchScreen.storyboard */; };
+		83A231AC7B3110F3A7175D99 /* libPods-Tasker.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FA90D78FA1E05D953C46B65B /* libPods-Tasker.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -106,11 +103,6 @@
 		01943A9018B98455005137C2 /* img_notes.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = img_notes.png; sourceTree = "<group>"; };
 		01943A9118B98455005137C2 /* img_sections.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = img_sections.png; sourceTree = "<group>"; };
 		01943A9218B98455005137C2 /* img_tasks.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = img_tasks.png; sourceTree = "<group>"; };
-		019A761E18B71EA200113DC4 /* CHANGELOG.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = CHANGELOG.md; sourceTree = "<group>"; };
-		019A762018B71EA200113DC4 /* SZTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SZTextView.h; sourceTree = "<group>"; };
-		019A762118B71EA200113DC4 /* SZTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SZTextView.m; sourceTree = "<group>"; };
-		019A762218B71EA200113DC4 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
-		019A762318B71EA200113DC4 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
 		019A762918B71ECE00113DC4 /* Default-7-586@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-7-586@2x.png"; sourceTree = "<group>"; };
 		019A762A18B71ECE00113DC4 /* Default-7@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-7@2x.png"; sourceTree = "<group>"; };
 		019A762B18B71ECE00113DC4 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
@@ -168,6 +160,9 @@
 		019A768318B7213C00113DC4 /* RIPSegmentsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RIPSegmentsViewController.h; sourceTree = "<group>"; };
 		019A768418B7213C00113DC4 /* RIPSegmentsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RIPSegmentsViewController.m; sourceTree = "<group>"; };
 		037DBC4D235FADC100397761 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
+		0B2AA61FDD1C4D79D75DB230 /* Pods-Tasker.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tasker.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Tasker/Pods-Tasker.debug.xcconfig"; sourceTree = "<group>"; };
+		66573AEC3FB1EDEFAF1D38F6 /* Pods-Tasker.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tasker.release.xcconfig"; path = "Pods/Target Support Files/Pods-Tasker/Pods-Tasker.release.xcconfig"; sourceTree = "<group>"; };
+		FA90D78FA1E05D953C46B65B /* libPods-Tasker.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Tasker.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -179,6 +174,7 @@
 				010C271318B6D7E60046D3B4 /* CoreData.framework in Frameworks */,
 				010C271118B6D7E60046D3B4 /* UIKit.framework in Frameworks */,
 				010C270D18B6D7E60046D3B4 /* Foundation.framework in Frameworks */,
+				83A231AC7B3110F3A7175D99 /* libPods-Tasker.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -203,6 +199,7 @@
 				010C273118B6D7E60046D3B4 /* TaskerTests */,
 				010C270B18B6D7E60046D3B4 /* Frameworks */,
 				010C270A18B6D7E60046D3B4 /* Products */,
+				65AEE408D3E9259D951C96E8 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -223,6 +220,7 @@
 				010C271018B6D7E60046D3B4 /* UIKit.framework */,
 				010C271218B6D7E60046D3B4 /* CoreData.framework */,
 				010C272A18B6D7E60046D3B4 /* XCTest.framework */,
+				FA90D78FA1E05D953C46B65B /* libPods-Tasker.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -232,7 +230,6 @@
 			children = (
 				010C271D18B6D7E60046D3B4 /* RIPAppDelegate.h */,
 				010C271E18B6D7E60046D3B4 /* RIPAppDelegate.m */,
-				019A761818B71DB400113DC4 /* Addons */,
 				019A764118B71F5100113DC4 /* Data */,
 				019A764318B71F5100113DC4 /* Interface */,
 				019A764418B71F5100113DC4 /* Model */,
@@ -272,35 +269,6 @@
 				010C273418B6D7E60046D3B4 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		019A761818B71DB400113DC4 /* Addons */ = {
-			isa = PBXGroup;
-			children = (
-				019A761D18B71EA200113DC4 /* SZTextView */,
-			);
-			name = Addons;
-			sourceTree = "<group>";
-		};
-		019A761D18B71EA200113DC4 /* SZTextView */ = {
-			isa = PBXGroup;
-			children = (
-				019A761E18B71EA200113DC4 /* CHANGELOG.md */,
-				019A761F18B71EA200113DC4 /* Classes */,
-				019A762218B71EA200113DC4 /* LICENSE */,
-				019A762318B71EA200113DC4 /* README.md */,
-			);
-			name = SZTextView;
-			path = Addons/SZTextView;
-			sourceTree = "<group>";
-		};
-		019A761F18B71EA200113DC4 /* Classes */ = {
-			isa = PBXGroup;
-			children = (
-				019A762018B71EA200113DC4 /* SZTextView.h */,
-				019A762118B71EA200113DC4 /* SZTextView.m */,
-			);
-			path = Classes;
 			sourceTree = "<group>";
 		};
 		019A762818B71ECE00113DC4 /* Icons */ = {
@@ -438,6 +406,15 @@
 			path = Screenshots;
 			sourceTree = "<group>";
 		};
+		65AEE408D3E9259D951C96E8 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				0B2AA61FDD1C4D79D75DB230 /* Pods-Tasker.debug.xcconfig */,
+				66573AEC3FB1EDEFAF1D38F6 /* Pods-Tasker.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -445,6 +422,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 010C273B18B6D7E60046D3B4 /* Build configuration list for PBXNativeTarget "Tasker" */;
 			buildPhases = (
+				1F47C4968EA65529936A00AB /* [CP] Check Pods Manifest.lock */,
 				010C270518B6D7E50046D3B4 /* Sources */,
 				010C270618B6D7E50046D3B4 /* Frameworks */,
 				010C270718B6D7E50046D3B4 /* Resources */,
@@ -520,7 +498,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				019A762718B71EA200113DC4 /* README.md in Resources */,
 				019A763618B71ECE00113DC4 /* Default.png in Resources */,
 				019A763818B71ECE00113DC4 /* Default~iphone.png in Resources */,
 				019A764718B71F5100113DC4 /* DefaultData.plist in Resources */,
@@ -532,10 +509,8 @@
 				037DBC4E235FADC100397761 /* LaunchScreen.storyboard in Resources */,
 				010C272418B6D7E60046D3B4 /* Images.xcassets in Resources */,
 				01943A9318B98455005137C2 /* img_edit_task.png in Resources */,
-				019A762418B71EA200113DC4 /* CHANGELOG.md in Resources */,
 				01943A9518B98455005137C2 /* img_sections.png in Resources */,
 				019A763E18B71ECE00113DC4 /* Icon-60@2x.png in Resources */,
-				019A762618B71EA200113DC4 /* LICENSE in Resources */,
 				019A763518B71ECE00113DC4 /* Default-7@2x.png in Resources */,
 				019A763418B71ECE00113DC4 /* Default-7-586@2x.png in Resources */,
 				019A763B18B71ECE00113DC4 /* Icon-40@2x.png in Resources */,
@@ -557,6 +532,27 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		1F47C4968EA65529936A00AB /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Tasker-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		010C270518B6D7E50046D3B4 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -572,7 +568,6 @@
 				019A768E18B7213C00113DC4 /* RIPReminderViewController.m in Sources */,
 				019A766318B7200800113DC4 /* Section.m in Sources */,
 				019A765E18B7200800113DC4 /* RIPCoreDataController+Notes.m in Sources */,
-				019A762518B71EA200113DC4 /* SZTextView.m in Sources */,
 				019A768A18B7213C00113DC4 /* RIPSectionCell.m in Sources */,
 				019A766518B7200800113DC4 /* RIPCoreDataController.m in Sources */,
 				019A766018B7200800113DC4 /* RIPCoreDataController+Segments.m in Sources */,
@@ -742,6 +737,7 @@
 		};
 		010C273C18B6D7E60046D3B4 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0B2AA61FDD1C4D79D75DB230 /* Pods-Tasker.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-2";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
@@ -757,6 +753,7 @@
 		};
 		010C273D18B6D7E60046D3B4 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 66573AEC3FB1EDEFAF1D38F6 /* Pods-Tasker.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-2";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
