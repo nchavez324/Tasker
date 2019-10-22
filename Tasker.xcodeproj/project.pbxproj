@@ -496,13 +496,13 @@
 			};
 			buildConfigurationList = 010C270418B6D7E50046D3B4 /* Build configuration list for PBXProject "Tasker" */;
 			compatibilityVersion = "Xcode 3.2";
-			developmentRegion = English;
+			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
-				English,
 				en,
 				pt,
 				es,
+				Base,
 			);
 			mainGroup = 010C270018B6D7E50046D3B4;
 			productRefGroup = 010C270A18B6D7E60046D3B4 /* Products */;
