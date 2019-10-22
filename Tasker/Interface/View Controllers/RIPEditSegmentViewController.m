@@ -66,7 +66,7 @@ static NSInteger const kEditContentViewTag  = 1;
         
         if(_segment[kSegmentDateKey] == [NSNull null]){
             NSDate *d = [NSDate date];
-            NSDateComponents *dateComps = [[NSCalendar currentCalendar] components:NSSecondCalendarUnit fromDate:d];
+          NSDateComponents *dateComps = [[NSCalendar currentCalendar] components:NSCalendarUnitSecond fromDate:d];
             [dateComps setSecond:-[dateComps second]];
             d = [[NSCalendar currentCalendar] dateByAddingComponents:dateComps toDate:d options:0];
             _segment[kSegmentDateKey] = d;

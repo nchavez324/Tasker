@@ -16,8 +16,8 @@
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     dateFormatter.locale = [NSLocale currentLocale];
     NSDate *currentDate = [NSDate date];
-    NSCalendar *gregorian = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
-    NSDateComponents *dateComps = [gregorian components:(NSDayCalendarUnit | NSHourCalendarUnit | NSWeekCalendarUnit | NSWeekdayCalendarUnit | NSMinuteCalendarUnit | NSYearCalendarUnit | NSMonthCalendarUnit | NSTimeZoneCalendarUnit) fromDate:currentDate];
+  NSCalendar *gregorian = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
+  NSDateComponents *dateComps = [gregorian components:(NSCalendarUnitDay | NSCalendarUnitHour | NSCalendarUnitWeekOfMonth | NSCalendarUnitWeekday | NSCalendarUnitMinute | NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitTimeZone) fromDate:currentDate];
     [dateComps setMinute:0];
     [dateComps setTimeZone:[NSTimeZone localTimeZone]];
     
@@ -67,7 +67,7 @@
 }
 
 - (NSDate *)removeSeconds {
-    NSDateComponents *dateComps = [[NSCalendar currentCalendar] components:NSSecondCalendarUnit fromDate:self];
+  NSDateComponents *dateComps = [[NSCalendar currentCalendar] components:NSCalendarUnitSecond fromDate:self];
     [dateComps setSecond:-[dateComps second]];
     return [[NSCalendar currentCalendar] dateByAddingComponents:dateComps toDate:self options:0];
 }
