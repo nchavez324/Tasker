@@ -211,55 +211,75 @@
 }
 
 - (void)readSections {
-    [self.refreshControl beginRefreshing];
-    [[RIPCoreDataController shared] readSectionsWithCompletion:^(NSArray *sections) {
+  [self.refreshControl beginRefreshing];
+  __weak __typeof(self) weakSelf = self;
+  [[RIPCoreDataController shared]
+      readSectionsWithCompletion:^(NSArray *sections) {
         dispatch_async(dispatch_get_main_queue(), ^{
-            _sections = [NSMutableArray array];
-            for(NSInteger i = 0; i < sections.count; i++){
-                NSManagedObjectID *mid = sections[i];
-                NSMutableDictionary *entry = [NSMutableDictionary dictionary];
-                entry[kEntryObjectIDKey] = mid;
-                entry[kSectionColorKey] = [NSNull null];
-                entry[kEntryTitleKey] = [NSNull null];
-                entry[kEntryPositionKey] = [NSNumber numberWithInteger:(sections.count - i - 1)];
-                [_sections addObject:entry];
-            }
-            [self.tableView reloadData];
-            [self.refreshControl endRefreshing];
+          if (!weakSelf) { return; }
+          weakSelf.sections = [NSMutableArray array];
+          for (NSInteger i = 0; i < sections.count; i++) {
+            NSManagedObjectID *mid = sections[i];
+            NSMutableDictionary *entry = [NSMutableDictionary dictionary];
+            entry[kEntryObjectIDKey] = mid;
+            entry[kSectionColorKey] = [NSNull null];
+            entry[kEntryTitleKey] = [NSNull null];
+            entry[kEntryPositionKey] =
+                [NSNumber numberWithInteger:(sections.count - i - 1)];
+            [weakSelf.sections addObject:entry];
+          }
+          [self.tableView reloadData];
+          [self.refreshControl endRefreshing];
         });
-    }];
+      }];
 }
 
 - (void)updateSections {
-    [[RIPCoreDataController shared] updateObjects:^(NSManagedObjectContext *moc) {
-        for (NSDictionary *d in _sections) {
-            NSManagedObjectID *mid = d[kEntryObjectIDKey];
-            Section *mo = (Section *)[moc objectWithID:mid];
-            [mo setTitle:d[kEntryTitleKey]];
-            [mo setColor:d[kSectionColorKey]];
-            [mo setPosition:d[kEntryPositionKey]];
-        }
-    } completion:nil];
+  __weak __typeof(self) weakSelf = self;
+  [[RIPCoreDataController shared] updateObjects:^(NSManagedObjectContext *moc) {
+    if (!weakSelf) { return; }
+    for (NSDictionary *d in weakSelf.sections) {
+      NSManagedObjectID *mid = d[kEntryObjectIDKey];
+      Section *mo = (Section *)[moc objectWithID:mid];
+      [mo setTitle:d[kEntryTitleKey]];
+      [mo setColor:d[kSectionColorKey]];
+      [mo setPosition:d[kEntryPositionKey]];
+    }
+  }
+                                     completion:nil];
 }
 
 - (void)deleteSection:(NSInteger)index {
-    for(NSInteger i = 0; i < index; i++){
-        NSMutableDictionary *entry = _sections[i];
-        entry[kEntryPositionKey] = [NSNumber numberWithInteger:_sections.count - i - 2];
-    }
-    NSManagedObjectID *mid = (NSManagedObjectID *)_sections[index][kEntryObjectIDKey];
-    [_sections removeObjectAtIndex:index];
-    [[RIPCoreDataController shared] deleteSections:@[mid] completion:^(BOOL success) {
-        if(success){
-            [[RIPCoreDataController shared] updateObjects:^(NSManagedObjectContext *moc) {
-                for (NSInteger i = 0; i < index; i++) {
-                    NSDictionary *entry = _sections[i];
-                    Section *mo = (Section *)[moc objectWithID:entry[kEntryObjectIDKey]];
-                    [mo setPosition:[NSNumber numberWithInteger:[(NSNumber *)entry[kEntryPositionKey] integerValue]]];
+  for (NSInteger i = 0; i < index; i++) {
+    NSMutableDictionary *entry = self.sections[i];
+    entry[kEntryPositionKey] =
+        [NSNumber numberWithInteger:self.sections.count - i - 2];
+  }
+  NSManagedObjectID *mid =
+      (NSManagedObjectID *)_sections[index][kEntryObjectIDKey];
+  [self.sections removeObjectAtIndex:index];
+
+  __weak __typeof(self) weakSelf = self;
+  [[RIPCoreDataController shared]
+      deleteSections:@[ mid ]
+          completion:^(BOOL success) {
+            if (!success) {
+              return;
+            }
+            [[RIPCoreDataController shared]
+                updateObjects:^(NSManagedObjectContext *moc) {
+                  if (!weakSelf) {
+                    return;
+                  }
+                  for (NSInteger i = 0; i < index; i++) {
+                    NSDictionary *entry = weakSelf.sections[i];
+                    Section *mo =
+                        (Section *)[moc objectWithID:entry[kEntryObjectIDKey]];
+                    [mo setPosition:@([entry[kEntryPositionKey] integerValue])];
+                  }
                 }
-            } completion:nil];
-        }
-    }];
+                   completion:nil];
+          }];
 }
 
 - (void)didPressDeleteSection:(NSInteger)sectionIndex {

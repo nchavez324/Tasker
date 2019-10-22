@@ -203,70 +203,104 @@
 }
 
 - (void)readSegments {
-    [self.refreshControl beginRefreshing];
-    [[RIPCoreDataController shared] readSegmentsFromNote:_note[kEntryObjectIDKey] completion:^(NSArray *segments) {
-        dispatch_async(dispatch_get_main_queue(), ^{
-            _segments = [NSMutableArray array];
-            for(NSInteger i = 0; i < segments.count; i++){
-                NSManagedObjectID *mid = segments[i];
-                NSMutableDictionary *entry = [NSMutableDictionary dictionary];
-                entry[kEntryObjectIDKey] = mid;
-                entry[kEntryTitleKey] = [NSNull null];
-                entry[kSegmentCompletionKey] = [NSNull null];
-                entry[kSegmentContentKey] = [NSNull null];
-                entry[kSegmentDateKey] = [NSNull null];
-                entry[kSegmentReminderKey] = [NSNull null];
-                entry[kEntryPositionKey] = [NSNumber numberWithInteger:segments.count - i - 1];
-                [_segments addObject:entry];
-            }
-            [self.tableView reloadData];
-            [self.refreshControl endRefreshing];
-        });
-    }];
+  [self.refreshControl beginRefreshing];
+  __weak __typeof(self) weakSelf = self;
+  [[RIPCoreDataController shared]
+      readSegmentsFromNote:self.note[kEntryObjectIDKey]
+                completion:^(NSArray *segments) {
+                  dispatch_async(dispatch_get_main_queue(), ^{
+                    if (!weakSelf) {
+                      return;
+                    }
+                    weakSelf.segments = [NSMutableArray array];
+                    for (NSInteger i = 0; i < segments.count; i++) {
+                      NSManagedObjectID *mid = segments[i];
+                      NSMutableDictionary *entry =
+                          [NSMutableDictionary dictionary];
+                      entry[kEntryObjectIDKey] = mid;
+                      entry[kEntryTitleKey] = [NSNull null];
+                      entry[kSegmentCompletionKey] = [NSNull null];
+                      entry[kSegmentContentKey] = [NSNull null];
+                      entry[kSegmentDateKey] = [NSNull null];
+                      entry[kSegmentReminderKey] = [NSNull null];
+                      entry[kEntryPositionKey] =
+                          [NSNumber numberWithInteger:segments.count - i - 1];
+                      [weakSelf.segments addObject:entry];
+                    }
+                    [weakSelf.tableView reloadData];
+                    [weakSelf.refreshControl endRefreshing];
+                  });
+                }];
 }
 
 - (void)updateSegments {
-    [[RIPCoreDataController shared] updateObjects:^(NSManagedObjectContext *moc) {
-        for (NSDictionary *d in _segments) {
-            NSManagedObjectID *mid = d[kEntryObjectIDKey];
-            Segment *mo = (Segment *)[moc objectWithID:mid];
-            [mo setTitle:d[kEntryTitleKey]];
-            [mo setCompletion:d[kSegmentCompletionKey]];
-            [mo setContent:d[kSegmentContentKey]];
-            [mo setDate:d[kSegmentDateKey]];
-            [mo setReminder:((d[kSegmentReminderKey]==[NSNull null])?nil:d[kSegmentReminderKey])];
-            [mo setPosition:d[kEntryPositionKey]];
-        }
-    } completion:nil];
+  __weak __typeof(self) weakSelf = self;
+  [[RIPCoreDataController shared] updateObjects:^(NSManagedObjectContext *moc) {
+    if (!weakSelf) {
+      return;
+    }
+    for (NSDictionary *d in weakSelf.segments) {
+      NSManagedObjectID *mid = d[kEntryObjectIDKey];
+      Segment *mo = (Segment *)[moc objectWithID:mid];
+      [mo setTitle:d[kEntryTitleKey]];
+      [mo setCompletion:d[kSegmentCompletionKey]];
+      [mo setContent:d[kSegmentContentKey]];
+      [mo setDate:d[kSegmentDateKey]];
+      [mo setReminder:((d[kSegmentReminderKey] == [NSNull null])
+                           ? nil
+                           : d[kSegmentReminderKey])];
+      [mo setPosition:d[kEntryPositionKey]];
+    }
+  }
+                                     completion:nil];
 }
 
 - (void)deleteSegment:(NSInteger)index {
-    for(NSInteger i = 0; i < index; i++){
-        NSMutableDictionary *entry = _segments[i];
-        entry[kEntryPositionKey] = [NSNumber numberWithInteger:_segments.count - i - 2];
-    }
-    NSManagedObjectID *mid = (NSManagedObjectID *)_segments[index][kEntryObjectIDKey];
-    [_segments removeObjectAtIndex:index];
-    [[RIPCoreDataController shared] deleteSegments:@[mid] completion:^(BOOL success) {
-        if(success){
-            [[RIPCoreDataController shared] updateObjects:^(NSManagedObjectContext *moc) {
-                for (NSInteger i = 0; i < index; i++) {
-                    NSDictionary *entry = _segments[i];
-                    Segment *mo = (Segment *)[moc objectWithID:entry[kEntryObjectIDKey]];
-                    [mo setPosition:[NSNumber numberWithInteger:[(NSNumber *)entry[kEntryPositionKey] integerValue]]];
-                }
-            } completion:^(BOOL s) {
-                NSArray *nots = [[UIApplication sharedApplication] scheduledLocalNotifications];
-                UILocalNotification *toRemove = nil;
-                for (UILocalNotification *not in nots) {
-                    if([mid.description isEqual:not.userInfo[kEntryObjectIDKey]])
-                        toRemove = not;
-                }
-                if(toRemove)
-                    [[UIApplication sharedApplication] cancelLocalNotification:toRemove];
-            }];
-        }
-    }];
+  for (NSInteger i = 0; i < index; i++) {
+    NSMutableDictionary *entry = self.segments[i];
+    entry[kEntryPositionKey] =
+        [NSNumber numberWithInteger:self.segments.count - i - 2];
+  }
+  NSManagedObjectID *mid =
+      (NSManagedObjectID *)self.segments[index][kEntryObjectIDKey];
+  [self.segments removeObjectAtIndex:index];
+
+  __weak __typeof(self) weakSelf = self;
+  [[RIPCoreDataController shared]
+      deleteSegments:@[ mid ]
+          completion:^(BOOL success) {
+            if (!success) {
+              return;
+            }
+            [[RIPCoreDataController shared] updateObjects:^(
+                                                NSManagedObjectContext *moc) {
+              if (!weakSelf) {
+                return;
+              }
+              for (NSInteger i = 0; i < index; i++) {
+                NSDictionary *entry = weakSelf.segments[i];
+                Segment *mo =
+                    (Segment *)[moc objectWithID:entry[kEntryObjectIDKey]];
+                [mo setPosition:[NSNumber
+                                    numberWithInteger:
+                                        [(NSNumber *)entry[kEntryPositionKey]
+                                            integerValue]]];
+              }
+            }
+                completion:^(BOOL s) {
+                  NSArray *nots = [[UIApplication sharedApplication]
+                      scheduledLocalNotifications];
+                  UILocalNotification *toRemove = nil;
+                  for (UILocalNotification * not in nots) {
+                    if ([mid.description
+                            isEqual:not.userInfo[kEntryObjectIDKey]])
+                      toRemove = not;
+                  }
+                  if (toRemove)
+                    [[UIApplication sharedApplication]
+                        cancelLocalNotification:toRemove];
+                }];
+          }];
 }
 
 - (void)updateCompletion {
@@ -294,34 +328,47 @@
 }
 
 - (void)updateSegmentsWith:(NSMutableDictionary *)segment {
-    if(segment[kEntryObjectIDKey] == nil){
-        //new seg
-        [self.tableView beginUpdates];
-        [_segments insertObject:segment atIndex:0];
-        [self.tableView insertRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:0 inSection:0]] withRowAnimation:UITableViewRowAnimationAutomatic];
-        [self.tableView endUpdates];
-        
-        [[RIPCoreDataController shared] createSegments:@[segment] forNote:(NSManagedObjectID *)_note[kEntryObjectIDKey] completion:^(NSArray *objIDs) {
-            //main
-            segment[kEntryObjectIDKey] = (NSManagedObjectID *)objIDs[0];
-            [Segment scheduleNotification:segment withSectionName:_note[kEntryTitleKey]];
-        }];
-    }else{
-        for (NSInteger i = 0; i < _segments.count; i++) {
-            NSMutableDictionary *entry = _segments[i];
-            if([entry[kEntryObjectIDKey] isEqual:segment[kEntryObjectIDKey]]){
-                entry[kEntryTitleKey] = segment[kEntryTitleKey];
-                entry[kSegmentContentKey] = segment[kSegmentContentKey];
-                
-                [self updateNotificationsForOld:entry new:segment];
-                
-                entry[kSegmentDateKey] = segment[kSegmentDateKey];
-                entry[kSegmentReminderKey] = segment[kSegmentReminderKey];
-                [self.tableView reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:i inSection:0]] withRowAnimation:UITableViewRowAnimationNone];
-                [self updateSegments];
-            }
-        }
+  if (segment[kEntryObjectIDKey] == nil) {
+    // new seg
+    [self.tableView beginUpdates];
+    [self.segments insertObject:segment atIndex:0];
+    [self.tableView
+        insertRowsAtIndexPaths:@[ [NSIndexPath indexPathForRow:0 inSection:0] ]
+              withRowAnimation:UITableViewRowAnimationAutomatic];
+    [self.tableView endUpdates];
+
+    __weak __typeof(self) weakSelf = self;
+    [[RIPCoreDataController shared]
+        createSegments:@[ segment ]
+               forNote:(NSManagedObjectID *)self.note[kEntryObjectIDKey]
+            completion:^(NSArray *objIDs) {
+              if (!weakSelf) {
+                return;
+              }
+              // main
+              segment[kEntryObjectIDKey] = (NSManagedObjectID *)objIDs[0];
+              [Segment scheduleNotification:segment
+                            withSectionName:weakSelf.note[kEntryTitleKey]];
+            }];
+  } else {
+    for (NSInteger i = 0; i < self.segments.count; i++) {
+      NSMutableDictionary *entry = self.segments[i];
+      if ([entry[kEntryObjectIDKey] isEqual:segment[kEntryObjectIDKey]]) {
+        entry[kEntryTitleKey] = segment[kEntryTitleKey];
+        entry[kSegmentContentKey] = segment[kSegmentContentKey];
+
+        [self updateNotificationsForOld:entry new:segment];
+
+        entry[kSegmentDateKey] = segment[kSegmentDateKey];
+        entry[kSegmentReminderKey] = segment[kSegmentReminderKey];
+        [self.tableView
+            reloadRowsAtIndexPaths:@[ [NSIndexPath indexPathForRow:i
+                                                         inSection:0] ]
+                  withRowAnimation:UITableViewRowAnimationNone];
+        [self updateSegments];
+      }
     }
+  }
 }
 
 - (void)updateNotificationsForOld:(NSDictionary *)entry new:(NSDictionary *)segment {

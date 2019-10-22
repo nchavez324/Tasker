@@ -193,56 +193,82 @@
 }
 
 - (void)readNotes {
-    [self.refreshControl beginRefreshing];
-    [[RIPCoreDataController shared] readNotesFromSection:_section[kEntryObjectIDKey] completion:^(NSArray *notes) {
-        dispatch_async(dispatch_get_main_queue(), ^{
-            _notes = [NSMutableArray array];
-            for(NSInteger i = 0; i < notes.count; i++){
-                NSDictionary *d = notes[i];
-                NSMutableDictionary *entry = [NSMutableDictionary dictionary];
-                entry[kEntryObjectIDKey] = d[kEntryObjectIDKey];
-                entry[kEntryTitleKey] = [NSNull null];
-                entry[kNoteColorKey] = [NSNull null];
-                entry[kNoteCompletionKey] = [NSNumber numberWithFloat:[d[kNoteCompletionKey] floatValue]];
-                entry[kEntryPositionKey] = [NSNumber numberWithInteger:notes.count - i - 1];
-                [_notes addObject:entry];
-            }
-            [self.tableView reloadData];
-            [self.refreshControl endRefreshing];
-        });
-    }];
+  [self.refreshControl beginRefreshing];
+  __weak __typeof(self) weakSelf = self;
+  [[RIPCoreDataController shared]
+      readNotesFromSection:self.section[kEntryObjectIDKey]
+                completion:^(NSArray *notes) {
+                  dispatch_async(dispatch_get_main_queue(), ^{
+                    if (!weakSelf) {
+                      return;
+                    }
+                    weakSelf.notes = [NSMutableArray array];
+                    for (NSInteger i = 0; i < notes.count; i++) {
+                      NSDictionary *d = notes[i];
+                      NSMutableDictionary *entry =
+                          [NSMutableDictionary dictionary];
+                      entry[kEntryObjectIDKey] = d[kEntryObjectIDKey];
+                      entry[kEntryTitleKey] = [NSNull null];
+                      entry[kNoteColorKey] = [NSNull null];
+                      entry[kNoteCompletionKey] = [NSNumber
+                          numberWithFloat:[d[kNoteCompletionKey] floatValue]];
+                      entry[kEntryPositionKey] =
+                          [NSNumber numberWithInteger:notes.count - i - 1];
+                      [weakSelf.notes addObject:entry];
+                    }
+                    [self.tableView reloadData];
+                    [self.refreshControl endRefreshing];
+                  });
+                }];
 }
 
 - (void)updateNotes {
-    [[RIPCoreDataController shared] updateObjects:^(NSManagedObjectContext *moc) {
-        for (NSDictionary *d in _notes) {
-            NSManagedObjectID *mid = d[kEntryObjectIDKey];
-            Note *mo = (Note *)[moc objectWithID:mid];
-            [mo setTitle:d[kEntryTitleKey]];
-            [mo setColor:d[kNoteColorKey]];
-            [mo setPosition:d[kEntryPositionKey]];
-        }
-    } completion:nil];
+  __weak __typeof(self) weakSelf = self;
+  [[RIPCoreDataController shared] updateObjects:^(NSManagedObjectContext *moc) {
+    if (!weakSelf) {
+      return;
+    }
+    for (NSDictionary *d in weakSelf.notes) {
+      NSManagedObjectID *mid = d[kEntryObjectIDKey];
+      Note *mo = (Note *)[moc objectWithID:mid];
+      [mo setTitle:d[kEntryTitleKey]];
+      [mo setColor:d[kNoteColorKey]];
+      [mo setPosition:d[kEntryPositionKey]];
+    }
+  }
+                                     completion:nil];
 }
 
 - (void)deleteNote:(NSInteger)index {
-    for(NSInteger i = 0; i < index; i++){
-        NSMutableDictionary *entry = _notes[i];
-        entry[kEntryPositionKey] = [NSNumber numberWithInteger:_notes.count - i - 2];
-    }
-    NSManagedObjectID *mid = (NSManagedObjectID *)_notes[index][kEntryObjectIDKey];
-    [_notes removeObjectAtIndex:index];
-    [[RIPCoreDataController shared] deleteNotes:@[mid] completion:^(BOOL success) {
-        if(success){
-            [[RIPCoreDataController shared] updateObjects:^(NSManagedObjectContext *moc) {
-                for (NSInteger i = 0; i < index; i++) {
-                    NSDictionary *entry = _notes[i];
-                    Note *mo = (Note *)[moc objectWithID:entry[kEntryObjectIDKey]];
-                    [mo setPosition:[NSNumber numberWithInteger:[(NSNumber *)entry[kEntryPositionKey] integerValue]]];
-                }
-            } completion:nil];
-        }
-    }];
+  for (NSInteger i = 0; i < index; i++) {
+    NSMutableDictionary *entry = self.notes[i];
+    entry[kEntryPositionKey] =
+        [NSNumber numberWithInteger:self.notes.count - i - 2];
+  }
+  NSManagedObjectID *mid =
+      (NSManagedObjectID *)self.notes[index][kEntryObjectIDKey];
+  [self.notes removeObjectAtIndex:index];
+
+  __weak __typeof(self) weakSelf = self;
+  [[RIPCoreDataController shared]
+      deleteNotes:@[ mid ]
+       completion:^(BOOL success) {
+         if (!success) {
+           return;
+         }
+         [[RIPCoreDataController shared]
+             updateObjects:^(NSManagedObjectContext *moc) {
+               if (!weakSelf) {
+                 return;
+               }
+               for (NSInteger i = 0; i < index; i++) {
+                 NSDictionary *entry = weakSelf.notes[i];
+                 Note *mo = (Note *)[moc objectWithID:entry[kEntryObjectIDKey]];
+                 [mo setPosition:@([entry[kEntryPositionKey] integerValue])];
+               }
+             }
+                completion:nil];
+       }];
 }
 
 - (void)updateCompletion:(float)average forNoteWithID:(NSManagedObjectID *)mid {
