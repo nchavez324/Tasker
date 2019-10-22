@@ -23,9 +23,6 @@
     UINavigationController *mainNav = [sb instantiateInitialViewController];
     self.window.rootViewController = mainNav;
     
-    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault animated:YES];
-    [self.window.rootViewController setNeedsStatusBarAppearanceUpdate];
-    
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
     return YES;

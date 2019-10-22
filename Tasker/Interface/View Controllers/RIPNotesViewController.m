@@ -45,7 +45,6 @@
         [self.navigationController.navigationBar setBarTintColor:[UIColor colorWithColor:_section[kSectionColorKey] alpha:0.8]];
         [self.navigationController.navigationBar setTranslucent:YES];
         [self.navigationController.navigationBar setTintColor:[UIColor whiteColor]];
-        [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent animated:YES];
         [self setNeedsStatusBarAppearanceUpdate];
 
         [self.navigationController.navigationBar
@@ -61,9 +60,8 @@
         [self updateNotes];
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+- (UIStatusBarStyle)preferredStatusBarStyle {
+  return UIStatusBarStyleLightContent;
 }
 
 #pragma mark - Table view data source

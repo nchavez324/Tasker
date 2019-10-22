@@ -46,7 +46,6 @@
     [self.navigationController.navigationBar
      setTitleTextAttributes:@{NSForegroundColorAttributeName : self.view.tintColor}];
     [self.navigationController.navigationBar setTranslucent:YES];
-    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault animated:YES];
     [self setNeedsStatusBarAppearanceUpdate];
 }
 
@@ -58,6 +57,10 @@
 
 - (BOOL)prefersStatusBarHidden {
     return NO;
+}
+
+- (UIStatusBarStyle)preferredStatusBarStyle {
+  return UIStatusBarStyleDefault;
 }
 
 - (void)didReceiveMemoryWarning {
