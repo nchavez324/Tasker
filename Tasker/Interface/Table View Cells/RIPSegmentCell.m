@@ -53,9 +53,7 @@
 
 - (void)setCompletion:(float)completion animated:(BOOL)animated {
     [_completionButton setCompletion:completion animated:animated];
-    [_completionButton
-     setColor:((NSFoundationVersionNumber>NSFoundationVersionNumber_iOS_6_1)?self.tintColor:[UIColor blueColor])
-     animated:NO];
+    [_completionButton setColor:self.tintColor animated:NO];
 
 }
 

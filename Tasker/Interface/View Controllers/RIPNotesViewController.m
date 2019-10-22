@@ -42,16 +42,11 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     if(_section != nil){
-        if(NSFoundationVersionNumber > NSFoundationVersionNumber_iOS_6_1){
-            [self.navigationController.navigationBar setBarTintColor:[UIColor colorWithColor:_section[kSectionColorKey] alpha:0.8]];
-            [self.navigationController.navigationBar setTranslucent:YES];
-            [self.navigationController.navigationBar setTintColor:[UIColor whiteColor]];
-            [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent animated:YES];
-            [self setNeedsStatusBarAppearanceUpdate];
-        }else{
-            [self.navigationController.navigationBar setTintColor:_section[kSectionColorKey]];
-            [self.navigationController.navigationBar setBackgroundColor:[UIColor whiteColor]];
-        }
+        [self.navigationController.navigationBar setBarTintColor:[UIColor colorWithColor:_section[kSectionColorKey] alpha:0.8]];
+        [self.navigationController.navigationBar setTranslucent:YES];
+        [self.navigationController.navigationBar setTintColor:[UIColor whiteColor]];
+        [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent animated:YES];
+        [self setNeedsStatusBarAppearanceUpdate];
 
         [self.navigationController.navigationBar
          setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor whiteColor]}];
@@ -124,12 +119,7 @@
 }
 
 - (IBAction)fieldsDidEndEditing:(UIView *)sender {
-    RIPNoteCell *cell;
-    if(NSFoundationVersionNumber > NSFoundationVersionNumber_iOS_6_1){
-        cell = (RIPNoteCell *)sender.superview.superview.superview;
-    }else{
-        cell = (RIPNoteCell *)sender.superview.superview;
-    }
+    RIPNoteCell *cell = (RIPNoteCell *)sender.superview.superview.superview;
     NSString *t = [[cell getTitle] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
     if(t.length == 0)
         t = NSLocalizedString(@"UNTITLED", @"Untitled");

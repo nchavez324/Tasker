@@ -41,18 +41,13 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    if(NSFoundationVersionNumber > NSFoundationVersionNumber_iOS_6_1){
-        [self.navigationController.navigationBar setTintColor:self.view.tintColor];
-        [self.navigationController.navigationBar setBarTintColor:[UIColor clearColor]];
-        [self.navigationController.navigationBar
-         setTitleTextAttributes:@{NSForegroundColorAttributeName : self.view.tintColor}];
-        [self.navigationController.navigationBar setTranslucent:YES];
-        [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault animated:YES];
-        [self setNeedsStatusBarAppearanceUpdate];
-    }else{
-        [self.navigationController.navigationBar setTintColor:nil];
-        [self.navigationController.navigationBar setBackgroundColor:[UIColor whiteColor]];
-    }
+    [self.navigationController.navigationBar setTintColor:self.view.tintColor];
+    [self.navigationController.navigationBar setBarTintColor:[UIColor clearColor]];
+    [self.navigationController.navigationBar
+     setTitleTextAttributes:@{NSForegroundColorAttributeName : self.view.tintColor}];
+    [self.navigationController.navigationBar setTranslucent:YES];
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault animated:YES];
+    [self setNeedsStatusBarAppearanceUpdate];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -145,12 +140,7 @@
 }
 
 - (IBAction)fieldsEditingDidEnd:(UIView *)sender {
-    RIPSectionCell *cell;
-    if(NSFoundationVersionNumber > NSFoundationVersionNumber_iOS_6_1){
-        cell = (RIPSectionCell *)sender.superview.superview.superview;
-    }else{
-        cell = (RIPSectionCell *)sender.superview.superview;
-    }
+    RIPSectionCell *cell = (RIPSectionCell *)sender.superview.superview.superview;
     NSString *t = [[cell getTitle] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
     if(t.length == 0)
         t = NSLocalizedString(@"UNTITLED", @"Untitled");

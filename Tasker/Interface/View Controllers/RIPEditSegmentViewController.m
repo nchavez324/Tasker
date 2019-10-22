@@ -150,15 +150,7 @@ static NSInteger const kEditContentViewTag  = 1;
                 break;
             }
             case 3:{
-                if(NSFoundationVersionNumber > NSFoundationVersionNumber_iOS_6_1)
-                    cell = [tableView dequeueReusableCellWithIdentifier:@"SegmentDatePickerCell"];
-                else{
-                    cell = [tableView dequeueReusableCellWithIdentifier:@"SegmentDatePicker6Cell"];
-                    UIDatePicker *datePicker = (UIDatePicker *)[cell viewWithTag:kEditDatePickerTag];
-                    CGRect pickerFrame = datePicker.frame;
-                    CGRect cellBounds = cell.bounds;
-                    datePicker.frame = CGRectMake((cellBounds.size.width - pickerFrame.size.width)/2.0, (cellBounds.size.height - pickerFrame.size.height)/2.0, pickerFrame.size.width, pickerFrame.size.height);
-                }
+                cell = [tableView dequeueReusableCellWithIdentifier:@"SegmentDatePickerCell"];
                 UIDatePicker *datePicker = (UIDatePicker *)[cell viewWithTag:kEditDatePickerTag];
                 if(_segment && _segment[kSegmentDateKey] != [NSNull null])
                     datePicker.date = _segment[kSegmentDateKey];
@@ -197,13 +189,8 @@ static NSInteger const kEditContentViewTag  = 1;
     UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:2 inSection:0]];
     UILabel *dateLabel = (UILabel *)[cell viewWithTag:kEditDateDateLabelTag];
     UILabel *timeLabel = (UILabel *)[cell viewWithTag:kEditDateTimeLabelTag];
-    if(NSFoundationVersionNumber > NSFoundationVersionNumber_iOS_6_1){
-        dateLabel.textColor = self.tableView.tintColor;
-        timeLabel.textColor = self.tableView.tintColor;
-    }else{
-        dateLabel.textColor = [UIColor whiteColor];
-        timeLabel.textColor = [UIColor whiteColor];
-    }
+    dateLabel.textColor = self.tableView.tintColor;
+    timeLabel.textColor = self.tableView.tintColor;
     NSDate *d = _segment[kSegmentDateKey];
     _segment[kSegmentDateKey] = [d removeSeconds];
     [self.tableView endUpdates];

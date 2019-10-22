@@ -17,18 +17,14 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    // Override point for customization after application launch.
-    //[[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleBlackTranslucent animated:YES];
-    
-    
+
     _coreDataController = [[RIPCoreDataController alloc] init];
     UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     UINavigationController *mainNav = [sb instantiateInitialViewController];
     self.window.rootViewController = mainNav;
     
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault animated:YES];
-    if(NSFoundationVersionNumber > NSFoundationVersionNumber_iOS_6_1)
-        [self.window.rootViewController setNeedsStatusBarAppearanceUpdate];
+    [self.window.rootViewController setNeedsStatusBarAppearanceUpdate];
     
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];

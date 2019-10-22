@@ -44,15 +44,10 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     if(_note != nil){
-        if(NSFoundationVersionNumber > NSFoundationVersionNumber_iOS_6_1){
-            [self.navigationController.navigationBar setBarTintColor:[UIColor colorWithColor:_note[kNoteColorKey] alpha:0.8]];
-            [self.navigationController.navigationBar setTintColor:[UIColor whiteColor]];
-            [self.navigationController.navigationBar setTranslucent:YES];
-            [self setNeedsStatusBarAppearanceUpdate];
-        }else{
-            [self.navigationController.navigationBar setTintColor:_note[kNoteColorKey]];
-            [self.navigationController.navigationBar setBackgroundColor:[UIColor whiteColor]];
-        }
+        [self.navigationController.navigationBar setBarTintColor:[UIColor colorWithColor:_note[kNoteColorKey] alpha:0.8]];
+        [self.navigationController.navigationBar setTintColor:[UIColor whiteColor]];
+        [self.navigationController.navigationBar setTranslucent:YES];
+        [self setNeedsStatusBarAppearanceUpdate];
         [self.navigationController.navigationBar
          setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor whiteColor]}];
         self.title = _note[kEntryTitleKey];
@@ -134,12 +129,7 @@
 }
 
 - (IBAction)fieldsDidEndEditing:(RIPCircleButton *)sender {
-    RIPSegmentCell *cell;
-    if(NSFoundationVersionNumber > NSFoundationVersionNumber_iOS_6_1){
-        cell = (RIPSegmentCell *)sender.superview.superview.superview;
-    }else{
-        cell = (RIPSegmentCell *)sender.superview.superview;
-    }
+    RIPSegmentCell *cell = (RIPSegmentCell *)sender.superview.superview.superview;
     
     float comp = [sender getCompletion];
     comp += 0.5;
