@@ -26,12 +26,6 @@
 		01943A9418B98455005137C2 /* img_notes.png in Resources */ = {isa = PBXBuildFile; fileRef = 01943A9018B98455005137C2 /* img_notes.png */; };
 		01943A9518B98455005137C2 /* img_sections.png in Resources */ = {isa = PBXBuildFile; fileRef = 01943A9118B98455005137C2 /* img_sections.png */; };
 		01943A9618B98455005137C2 /* img_tasks.png in Resources */ = {isa = PBXBuildFile; fileRef = 01943A9218B98455005137C2 /* img_tasks.png */; };
-		019A763918B71ECE00113DC4 /* Icon-29.png in Resources */ = {isa = PBXBuildFile; fileRef = 019A762E18B71ECE00113DC4 /* Icon-29.png */; };
-		019A763A18B71ECE00113DC4 /* Icon-29@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 019A762F18B71ECE00113DC4 /* Icon-29@2x.png */; };
-		019A763B18B71ECE00113DC4 /* Icon-40@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 019A763018B71ECE00113DC4 /* Icon-40@2x.png */; };
-		019A763C18B71ECE00113DC4 /* Icon-57.png in Resources */ = {isa = PBXBuildFile; fileRef = 019A763118B71ECE00113DC4 /* Icon-57.png */; };
-		019A763D18B71ECE00113DC4 /* Icon-57@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 019A763218B71ECE00113DC4 /* Icon-57@2x.png */; };
-		019A763E18B71ECE00113DC4 /* Icon-60@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 019A763318B71ECE00113DC4 /* Icon-60@2x.png */; };
 		019A764718B71F5100113DC4 /* DefaultData.plist in Resources */ = {isa = PBXBuildFile; fileRef = 019A764218B71F5100113DC4 /* DefaultData.plist */; };
 		019A765E18B7200800113DC4 /* RIPCoreDataController+Notes.m in Sources */ = {isa = PBXBuildFile; fileRef = 019A764B18B7200800113DC4 /* RIPCoreDataController+Notes.m */; };
 		019A765F18B7200800113DC4 /* RIPCoreDataController+Sections.m in Sources */ = {isa = PBXBuildFile; fileRef = 019A764D18B7200800113DC4 /* RIPCoreDataController+Sections.m */; };
@@ -98,12 +92,6 @@
 		01943A9018B98455005137C2 /* img_notes.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = img_notes.png; sourceTree = "<group>"; };
 		01943A9118B98455005137C2 /* img_sections.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = img_sections.png; sourceTree = "<group>"; };
 		01943A9218B98455005137C2 /* img_tasks.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = img_tasks.png; sourceTree = "<group>"; };
-		019A762E18B71ECE00113DC4 /* Icon-29.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-29.png"; sourceTree = "<group>"; };
-		019A762F18B71ECE00113DC4 /* Icon-29@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-29@2x.png"; sourceTree = "<group>"; };
-		019A763018B71ECE00113DC4 /* Icon-40@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-40@2x.png"; sourceTree = "<group>"; };
-		019A763118B71ECE00113DC4 /* Icon-57.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-57.png"; sourceTree = "<group>"; };
-		019A763218B71ECE00113DC4 /* Icon-57@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-57@2x.png"; sourceTree = "<group>"; };
-		019A763318B71ECE00113DC4 /* Icon-60@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-60@2x.png"; sourceTree = "<group>"; };
 		019A764218B71F5100113DC4 /* DefaultData.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = DefaultData.plist; sourceTree = "<group>"; };
 		019A764A18B7200800113DC4 /* RIPCoreDataController+Notes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "RIPCoreDataController+Notes.h"; sourceTree = "<group>"; };
 		019A764B18B7200800113DC4 /* RIPCoreDataController+Notes.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "RIPCoreDataController+Notes.m"; sourceTree = "<group>"; };
@@ -232,7 +220,6 @@
 			isa = PBXGroup;
 			children = (
 				01CC83F118B8065300233E09 /* Screenshots */,
-				019A762818B71ECE00113DC4 /* Icons */,
 				010C272318B6D7E60046D3B4 /* Images.xcassets */,
 				010C271618B6D7E60046D3B4 /* Tasker-Info.plist */,
 				010C271718B6D7E60046D3B4 /* InfoPlist.strings */,
@@ -259,19 +246,6 @@
 				010C273418B6D7E60046D3B4 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		019A762818B71ECE00113DC4 /* Icons */ = {
-			isa = PBXGroup;
-			children = (
-				019A762E18B71ECE00113DC4 /* Icon-29.png */,
-				019A762F18B71ECE00113DC4 /* Icon-29@2x.png */,
-				019A763018B71ECE00113DC4 /* Icon-40@2x.png */,
-				019A763118B71ECE00113DC4 /* Icon-57.png */,
-				019A763218B71ECE00113DC4 /* Icon-57@2x.png */,
-				019A763318B71ECE00113DC4 /* Icon-60@2x.png */,
-			);
-			path = Icons;
 			sourceTree = "<group>";
 		};
 		019A764118B71F5100113DC4 /* Data */ = {
@@ -485,20 +459,14 @@
 			files = (
 				019A764718B71F5100113DC4 /* DefaultData.plist in Resources */,
 				01943A9418B98455005137C2 /* img_notes.png in Resources */,
-				019A763C18B71ECE00113DC4 /* Icon-57.png in Resources */,
 				010C271918B6D7E60046D3B4 /* InfoPlist.strings in Resources */,
 				01943A9618B98455005137C2 /* img_tasks.png in Resources */,
 				037DBC4E235FADC100397761 /* LaunchScreen.storyboard in Resources */,
 				010C272418B6D7E60046D3B4 /* Images.xcassets in Resources */,
 				01943A9318B98455005137C2 /* img_edit_task.png in Resources */,
 				01943A9518B98455005137C2 /* img_sections.png in Resources */,
-				019A763E18B71ECE00113DC4 /* Icon-60@2x.png in Resources */,
-				019A763B18B71ECE00113DC4 /* Icon-40@2x.png in Resources */,
-				019A763D18B71ECE00113DC4 /* Icon-57@2x.png in Resources */,
 				019A768818B7213C00113DC4 /* Main.storyboard in Resources */,
 				01053CE518B7250C00E55BA3 /* Localizable.strings in Resources */,
-				019A763918B71ECE00113DC4 /* Icon-29.png in Resources */,
-				019A763A18B71ECE00113DC4 /* Icon-29@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -719,7 +687,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 0B2AA61FDD1C4D79D75DB230 /* Pods-Tasker.debug.xcconfig */;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-2";
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Tasker/Tasker-Prefix.pch";
@@ -735,7 +703,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 66573AEC3FB1EDEFAF1D38F6 /* Pods-Tasker.release.xcconfig */;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-2";
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Tasker/Tasker-Prefix.pch";
