@@ -40,7 +40,7 @@
         [self.navigationController.navigationBar setBarTintColor:[UIColor colorWithColor:_note[kNoteColorKey] alpha:0.8]];
         [self.navigationController.navigationBar setTintColor:[UIColor whiteColor]];
         [self.navigationController.navigationBar setTranslucent:YES];
-        [self setNeedsStatusBarAppearanceUpdate];
+        // [self setNeedsStatusBarAppearanceUpdate];
         [self.navigationController.navigationBar setTitleTextAttributes:@{
            NSForegroundColorAttributeName : UIColor.whiteColor,
            NSFontAttributeName: [UIFont boldSystemFontOfSize:22],
@@ -57,7 +57,7 @@
 }
 
 - (UIStatusBarStyle)preferredStatusBarStyle {
-    return UIStatusBarStyleLightContent;
+  return UIStatusBarStyleLightContent;
 }
 
 #pragma mark - Table view data source

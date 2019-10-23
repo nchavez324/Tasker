@@ -32,15 +32,16 @@
 }
 
 - (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
-    [self.navigationController.navigationBar setTintColor:self.view.tintColor];
-    [self.navigationController.navigationBar setBarTintColor:nil];
-    [self.navigationController.navigationBar setTitleTextAttributes:@{
-       NSForegroundColorAttributeName : self.view.tintColor,
-       NSFontAttributeName: [UIFont boldSystemFontOfSize:22],
-    }];
-    [self.navigationController.navigationBar setTranslucent:YES];
-    [self setNeedsStatusBarAppearanceUpdate];
+  [super viewWillAppear:animated];
+  [self.navigationController.navigationBar setTintColor:self.view.tintColor];
+  [self.navigationController.navigationBar setBarTintColor:UIColor.whiteColor];
+  [self.navigationController.navigationBar setTranslucent:YES];
+  [self.navigationController.navigationBar setTitleTextAttributes:@{
+    NSForegroundColorAttributeName : self.view.tintColor,
+    NSFontAttributeName : [UIFont boldSystemFontOfSize:22],
+  }];
+  [self.navigationController.navigationBar setBarStyle:UIBarStyleDefault];
+  [self setNeedsStatusBarAppearanceUpdate];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {

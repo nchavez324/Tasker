@@ -33,20 +33,28 @@
 }
 
 - (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
-    if(_section != nil){
-        [self.navigationController.navigationBar setBarTintColor:[UIColor colorWithColor:_section[kSectionColorKey] alpha:0.8]];
-        [self.navigationController.navigationBar setTranslucent:YES];
-        [self.navigationController.navigationBar setTintColor:[UIColor whiteColor]];
-        [self setNeedsStatusBarAppearanceUpdate];
+  [super viewWillAppear:animated];
+  if (!self.section) {
+    return;
+  }
+  UIColor *navBarColor =
+      [UIColor colorWithColor:self.section[kSectionColorKey] alpha:0.8];
+  [self.navigationController.navigationBar setTintColor:UIColor.whiteColor];
+  [self.navigationController.navigationBar setBarTintColor:navBarColor];
+  [self.navigationController.navigationBar setTranslucent:YES];
+  [self.navigationController.navigationBar setTitleTextAttributes:@{
+    NSForegroundColorAttributeName : UIColor.whiteColor,
+    NSFontAttributeName : [UIFont boldSystemFontOfSize:22],
+  }];
+  [self.navigationController.navigationBar setBarStyle:UIBarStyleBlack];
+  [self setNeedsStatusBarAppearanceUpdate];
 
-        [self.navigationController.navigationBar setTitleTextAttributes:@{
-           NSForegroundColorAttributeName : UIColor.whiteColor,
-           NSFontAttributeName: [UIFont boldSystemFontOfSize:22],
-        }];
-        [self setTitle:_section[kEntryTitleKey]];
-        self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"BACK", @"Back") style:UIBarButtonItemStylePlain target:nil action:nil];
-    }
+  [self setTitle:self.section[kEntryTitleKey]];
+  self.navigationItem.backBarButtonItem =
+      [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"BACK", @"Back")
+                                       style:UIBarButtonItemStylePlain
+                                      target:nil
+                                      action:nil];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
