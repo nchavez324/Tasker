@@ -33,8 +33,12 @@
 
 - (void)viewWillAppear:(BOOL)animated {
   [super viewWillAppear:animated];
+  UIColor *navBarColor = UIColor.whiteColor;
+  if (@available(iOS 13.0, *)) {
+    navBarColor = UIColor.systemBackgroundColor;
+  }
   [self.navigationController.navigationBar setTintColor:self.view.tintColor];
-  [self.navigationController.navigationBar setBarTintColor:UIColor.whiteColor];
+  [self.navigationController.navigationBar setBarTintColor:navBarColor];
   [self.navigationController.navigationBar setTranslucent:YES];
   [self.navigationController.navigationBar setTitleTextAttributes:@{
     NSForegroundColorAttributeName : self.view.tintColor,
