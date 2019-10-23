@@ -22,10 +22,6 @@
 		010C272E18B6D7E60046D3B4 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 010C271218B6D7E60046D3B4 /* CoreData.framework */; };
 		010C273618B6D7E60046D3B4 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 010C273418B6D7E60046D3B4 /* InfoPlist.strings */; };
 		010C273818B6D7E60046D3B4 /* TaskerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 010C273718B6D7E60046D3B4 /* TaskerTests.m */; };
-		01943A9318B98455005137C2 /* img_edit_task.png in Resources */ = {isa = PBXBuildFile; fileRef = 01943A8F18B98455005137C2 /* img_edit_task.png */; };
-		01943A9418B98455005137C2 /* img_notes.png in Resources */ = {isa = PBXBuildFile; fileRef = 01943A9018B98455005137C2 /* img_notes.png */; };
-		01943A9518B98455005137C2 /* img_sections.png in Resources */ = {isa = PBXBuildFile; fileRef = 01943A9118B98455005137C2 /* img_sections.png */; };
-		01943A9618B98455005137C2 /* img_tasks.png in Resources */ = {isa = PBXBuildFile; fileRef = 01943A9218B98455005137C2 /* img_tasks.png */; };
 		019A764718B71F5100113DC4 /* DefaultData.plist in Resources */ = {isa = PBXBuildFile; fileRef = 019A764218B71F5100113DC4 /* DefaultData.plist */; };
 		019A765E18B7200800113DC4 /* RIPCoreDataController+Notes.m in Sources */ = {isa = PBXBuildFile; fileRef = 019A764B18B7200800113DC4 /* RIPCoreDataController+Notes.m */; };
 		019A765F18B7200800113DC4 /* RIPCoreDataController+Sections.m in Sources */ = {isa = PBXBuildFile; fileRef = 019A764D18B7200800113DC4 /* RIPCoreDataController+Sections.m */; };
@@ -88,10 +84,6 @@
 		010C273318B6D7E60046D3B4 /* TaskerTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "TaskerTests-Info.plist"; sourceTree = "<group>"; };
 		010C273518B6D7E60046D3B4 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		010C273718B6D7E60046D3B4 /* TaskerTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TaskerTests.m; sourceTree = "<group>"; };
-		01943A8F18B98455005137C2 /* img_edit_task.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = img_edit_task.png; sourceTree = "<group>"; };
-		01943A9018B98455005137C2 /* img_notes.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = img_notes.png; sourceTree = "<group>"; };
-		01943A9118B98455005137C2 /* img_sections.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = img_sections.png; sourceTree = "<group>"; };
-		01943A9218B98455005137C2 /* img_tasks.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = img_tasks.png; sourceTree = "<group>"; };
 		019A764218B71F5100113DC4 /* DefaultData.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = DefaultData.plist; sourceTree = "<group>"; };
 		019A764A18B7200800113DC4 /* RIPCoreDataController+Notes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "RIPCoreDataController+Notes.h"; sourceTree = "<group>"; };
 		019A764B18B7200800113DC4 /* RIPCoreDataController+Notes.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "RIPCoreDataController+Notes.m"; sourceTree = "<group>"; };
@@ -219,7 +211,6 @@
 		010C271518B6D7E60046D3B4 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				01CC83F118B8065300233E09 /* Screenshots */,
 				010C272318B6D7E60046D3B4 /* Images.xcassets */,
 				010C271618B6D7E60046D3B4 /* Tasker-Info.plist */,
 				010C271718B6D7E60046D3B4 /* InfoPlist.strings */,
@@ -354,17 +345,6 @@
 			path = "View Controllers";
 			sourceTree = "<group>";
 		};
-		01CC83F118B8065300233E09 /* Screenshots */ = {
-			isa = PBXGroup;
-			children = (
-				01943A8F18B98455005137C2 /* img_edit_task.png */,
-				01943A9018B98455005137C2 /* img_notes.png */,
-				01943A9118B98455005137C2 /* img_sections.png */,
-				01943A9218B98455005137C2 /* img_tasks.png */,
-			);
-			path = Screenshots;
-			sourceTree = "<group>";
-		};
 		65AEE408D3E9259D951C96E8 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -458,13 +438,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				019A764718B71F5100113DC4 /* DefaultData.plist in Resources */,
-				01943A9418B98455005137C2 /* img_notes.png in Resources */,
 				010C271918B6D7E60046D3B4 /* InfoPlist.strings in Resources */,
-				01943A9618B98455005137C2 /* img_tasks.png in Resources */,
 				037DBC4E235FADC100397761 /* LaunchScreen.storyboard in Resources */,
 				010C272418B6D7E60046D3B4 /* Images.xcassets in Resources */,
-				01943A9318B98455005137C2 /* img_edit_task.png in Resources */,
-				01943A9518B98455005137C2 /* img_sections.png in Resources */,
 				019A768818B7213C00113DC4 /* Main.storyboard in Resources */,
 				01053CE518B7250C00E55BA3 /* Localizable.strings in Resources */,
 			);
