@@ -112,7 +112,7 @@
 }
 
 - (IBAction)fieldsDidEndEditing:(UIView *)sender {
-    RIPNoteCell *cell = (RIPNoteCell *)sender.superview.superview.superview;
+    RIPNoteCell *cell = (RIPNoteCell *)sender.superview.superview;
     NSString *t = [[cell getTitle] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
     if(t.length == 0)
         t = NSLocalizedString(@"UNTITLED", @"Untitled");

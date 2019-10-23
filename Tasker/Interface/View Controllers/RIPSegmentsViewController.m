@@ -119,7 +119,7 @@
 }
 
 - (IBAction)fieldsDidEndEditing:(RIPCircleButton *)sender {
-    RIPSegmentCell *cell = (RIPSegmentCell *)sender.superview.superview.superview;
+    RIPSegmentCell *cell = (RIPSegmentCell *)sender.superview.superview;
     
     float comp = [sender getCompletion];
     comp += 0.5;
