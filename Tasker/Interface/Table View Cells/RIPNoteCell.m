@@ -57,11 +57,19 @@
 }
 
 - (void)setSelectedMode:(BOOL)selected {
-    UIColor *textColor = selected?[UIColor whiteColor]:[UIColor blackColor];
-    UIColor *bgColor = selected?[UIColor lightGrayColor]:[UIColor whiteColor];
-    _titleField.textColor = textColor;
-    self.backgroundColor = bgColor;
-
+  UIColor *unselectedBGColor = UIColor.whiteColor;
+  UIColor *unselectedTextColor = UIColor.blackColor;
+  UIColor *selectedBGColor = UIColor.lightGrayColor;
+  UIColor *selectedTextColor = UIColor.whiteColor;
+  if (@available(iOS 13.0, *)) {
+    unselectedBGColor = UIColor.systemBackgroundColor;
+    unselectedTextColor = UIColor.labelColor;
+    selectedBGColor = UIColor.secondarySystemBackgroundColor;
+    selectedTextColor = UIColor.labelColor;
+  }
+  
+  self.titleField.textColor = selected ? selectedTextColor : unselectedTextColor;
+  self.backgroundColor = selected ? selectedBGColor : unselectedBGColor;
 }
 
 - (void)setEditing:(BOOL)editing animated:(BOOL)animated {

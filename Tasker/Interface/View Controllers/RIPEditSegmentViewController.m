@@ -152,7 +152,12 @@ static NSInteger const kEditContentViewTag  = 1;
         SZTextView *tv = (SZTextView *)[cell viewWithTag:kEditContentViewTag];
         tv.editable = YES;
         tv.placeholder = NSLocalizedString(@"NOTES", @"Notes");
-        tv.placeholderTextColor = [UIColor lightGrayColor];
+  
+      UIColor *placeholderTextColor = UIColor.lightGrayColor;
+      if (@available(iOS 13.0, *)) {
+        placeholderTextColor = UIColor.placeholderTextColor;
+      }
+      tv.placeholderTextColor = placeholderTextColor;
         if(_segment && _segment[kSegmentContentKey] != [NSNull null])
             tv.text = _segment[kSegmentContentKey];
     }
@@ -185,14 +190,22 @@ static NSInteger const kEditContentViewTag  = 1;
 }
 
 - (void)closeDatePicker {
-    [self.tableView beginUpdates];
-    [self.tableView deleteRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:3 inSection:0]] withRowAnimation:UITableViewRowAnimationTop];
-    UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:2 inSection:0]];
-    UILabel *dateLabel = (UILabel *)[cell viewWithTag:kEditDateDateLabelTag];
-    UILabel *timeLabel = (UILabel *)[cell viewWithTag:kEditDateTimeLabelTag];
-    dateLabel.textColor = [UIColor blackColor];
-    timeLabel.textColor = [UIColor blackColor];
-    [self.tableView endUpdates];
+  [self.tableView beginUpdates];
+  [self.tableView
+      deleteRowsAtIndexPaths:@[ [NSIndexPath indexPathForRow:3 inSection:0] ]
+            withRowAnimation:UITableViewRowAnimationTop];
+  UITableViewCell *cell = [self.tableView
+      cellForRowAtIndexPath:[NSIndexPath indexPathForRow:2 inSection:0]];
+  UILabel *dateLabel = (UILabel *)[cell viewWithTag:kEditDateDateLabelTag];
+  UILabel *timeLabel = (UILabel *)[cell viewWithTag:kEditDateTimeLabelTag];
+
+  UIColor *unselectedColor = UIColor.blackColor;
+  if (@available(iOS 13.0, *)) {
+    unselectedColor = UIColor.labelColor;
+  }
+  dateLabel.textColor = unselectedColor;
+  timeLabel.textColor = unselectedColor;
+  [self.tableView endUpdates];
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {

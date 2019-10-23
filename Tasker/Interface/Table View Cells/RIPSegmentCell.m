@@ -128,15 +128,27 @@
 }
 
 - (void)setSelectedMode:(BOOL)selected {
-    UIColor *textColor = selected?[UIColor whiteColor]:[UIColor blackColor];
-    UIColor *altTextColor = selected?[UIColor darkGrayColor]:[UIColor lightGrayColor];
-    UIColor *bgColor = selected?[UIColor lightGrayColor]:[UIColor whiteColor];
-    
-    _titleLabel.textColor = textColor;
-    _dateLabel.textColor = textColor;
-    _contentPreviewLabel.textColor = altTextColor;
-    
-    self.backgroundColor = bgColor;
+  UIColor *unselectedBGColor = UIColor.whiteColor;
+  UIColor *unselectedTextColor = UIColor.blackColor;
+  UIColor *unselectedAltColor = UIColor.lightGrayColor;
+  UIColor *selectedBGColor = UIColor.lightGrayColor;
+  UIColor *selectedTextColor = UIColor.whiteColor;
+  UIColor *selectedAltColor = UIColor.darkGrayColor;
+  if (@available(iOS 13.0, *)) {
+    unselectedBGColor = UIColor.systemBackgroundColor;
+    unselectedTextColor = UIColor.labelColor;
+    unselectedAltColor = UIColor.secondaryLabelColor;
+    selectedBGColor = UIColor.secondarySystemBackgroundColor;
+    selectedTextColor = UIColor.secondaryLabelColor;
+    selectedAltColor = UIColor.tertiaryLabelColor;
+  }
+
+  self.titleLabel.textColor =
+      selected ? selectedTextColor : unselectedTextColor;
+  self.dateLabel.textColor = selected ? selectedTextColor : unselectedTextColor;
+  self.contentPreviewLabel.textColor =
+      selected ? selectedAltColor : unselectedAltColor;
+  self.backgroundColor = selected ? selectedBGColor : unselectedBGColor;
 }
 
 @end

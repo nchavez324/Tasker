@@ -51,10 +51,19 @@
 }
 
 - (void)setSelectedMode:(BOOL)selected {
-    UIColor *textColor = selected?[UIColor whiteColor]:[UIColor blackColor];
-    UIColor *bgColor = selected?[UIColor lightGrayColor]:[UIColor whiteColor];
-    _titleField.textColor = textColor;
-    self.backgroundColor = bgColor;
+  UIColor *unselectedBGColor = UIColor.whiteColor;
+  UIColor *unselectedTextColor = UIColor.blackColor;
+  UIColor *selectedBGColor = UIColor.lightGrayColor;
+  UIColor *selectedTextColor = UIColor.whiteColor;
+  if (@available(iOS 13.0, *)) {
+    unselectedBGColor = UIColor.systemBackgroundColor;
+    unselectedTextColor = UIColor.labelColor;
+    selectedBGColor = UIColor.secondarySystemBackgroundColor;
+    selectedTextColor = UIColor.labelColor;
+  }
+  
+  self.titleField.textColor = selected ? selectedTextColor : unselectedTextColor;
+  self.backgroundColor = selected ? selectedBGColor : unselectedBGColor;
 }
 
 - (void)setEditing:(BOOL)editing animated:(BOOL)animated {
@@ -63,15 +72,21 @@
 }
 
 - (void)setEditingMode:(BOOL)editing {
-    if(editing){
-        _titleField.textColor = [UIColor darkGrayColor];
-        _titleField.borderStyle = UITextBorderStyleRoundedRect;
-        _titleField.userInteractionEnabled = YES;
-    }else{
-        _titleField.textColor = [UIColor blackColor];
-        _titleField.borderStyle = UITextBorderStyleNone;
-        _titleField.userInteractionEnabled = NO;
-    }
+  UIColor *defaultColor = UIColor.blackColor;
+  UIColor *editingColor = UIColor.darkGrayColor;
+  if (@available(iOS 13.0, *)) {
+    defaultColor = UIColor.labelColor;
+    editingColor = UIColor.secondaryLabelColor;
+  }
+  if (editing) {
+    self.titleField.textColor = editingColor;
+    self.titleField.borderStyle = UITextBorderStyleRoundedRect;
+    self.titleField.userInteractionEnabled = YES;
+  } else {
+    self.titleField.textColor = defaultColor;
+    self.titleField.borderStyle = UITextBorderStyleNone;
+    self.titleField.userInteractionEnabled = NO;
+  }
 }
 
 @end
