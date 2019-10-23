@@ -20,14 +20,6 @@
 
 @implementation RIPSectionsViewController
 
-- (id)initWithStyle:(UITableViewStyle)style {
-    self = [super initWithStyle:style];
-    if(self){
-        // Custom initialization
-    }
-    return self;
-}
-
 - (void)viewDidLoad {
     [super viewDidLoad];
     _sections = [NSMutableArray arrayWithArray:@[]];
@@ -43,8 +35,10 @@
     [super viewWillAppear:animated];
     [self.navigationController.navigationBar setTintColor:self.view.tintColor];
     [self.navigationController.navigationBar setBarTintColor:nil];
-    [self.navigationController.navigationBar
-     setTitleTextAttributes:@{NSForegroundColorAttributeName : self.view.tintColor}];
+    [self.navigationController.navigationBar setTitleTextAttributes:@{
+       NSForegroundColorAttributeName : self.view.tintColor,
+       NSFontAttributeName: [UIFont boldSystemFontOfSize:22],
+    }];
     [self.navigationController.navigationBar setTranslucent:YES];
     [self setNeedsStatusBarAppearanceUpdate];
 }

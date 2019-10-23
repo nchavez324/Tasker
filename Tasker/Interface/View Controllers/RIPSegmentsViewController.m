@@ -25,13 +25,6 @@
 
 @implementation RIPSegmentsViewController
 
-- (id)initWithStyle:(UITableViewStyle)style {
-    self = [super initWithStyle:style];
-    if(self){
-    }
-    return self;
-}
-
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.navigationItem.rightBarButtonItem = self.editButtonItem;
@@ -48,8 +41,10 @@
         [self.navigationController.navigationBar setTintColor:[UIColor whiteColor]];
         [self.navigationController.navigationBar setTranslucent:YES];
         [self setNeedsStatusBarAppearanceUpdate];
-        [self.navigationController.navigationBar
-         setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor whiteColor]}];
+        [self.navigationController.navigationBar setTitleTextAttributes:@{
+           NSForegroundColorAttributeName : UIColor.whiteColor,
+           NSFontAttributeName: [UIFont boldSystemFontOfSize:22],
+        }];
         self.title = _note[kEntryTitleKey];
     }
 }
@@ -63,11 +58,6 @@
 
 - (UIStatusBarStyle)preferredStatusBarStyle {
     return UIStatusBarStyleLightContent;
-}
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 #pragma mark - Table view data source

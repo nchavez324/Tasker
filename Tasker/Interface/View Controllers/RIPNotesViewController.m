@@ -23,13 +23,6 @@
 
 @implementation RIPNotesViewController
 
-- (id)initWithStyle:(UITableViewStyle)style {
-    self = [super initWithStyle:style];
-    if(self){
-    }
-    return self;
-}
-
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.navigationItem.rightBarButtonItem = self.editButtonItem;
@@ -47,8 +40,10 @@
         [self.navigationController.navigationBar setTintColor:[UIColor whiteColor]];
         [self setNeedsStatusBarAppearanceUpdate];
 
-        [self.navigationController.navigationBar
-         setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor whiteColor]}];
+        [self.navigationController.navigationBar setTitleTextAttributes:@{
+           NSForegroundColorAttributeName : UIColor.whiteColor,
+           NSFontAttributeName: [UIFont boldSystemFontOfSize:22],
+        }];
         [self setTitle:_section[kEntryTitleKey]];
         self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"BACK", @"Back") style:UIBarButtonItemStylePlain target:nil action:nil];
     }
@@ -266,6 +261,8 @@
             NSManagedObjectID *eMid = entry[kEntryObjectIDKey];
             if([eMid isEqual:mid]){
                 entry[kNoteCompletionKey] = [NSNumber numberWithFloat:average];
+                // TODO: Logs an error since this can't be called from
+                // viewWillDisappear.
                 [self.tableView reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:i inSection:0]] withRowAnimation:UITableViewRowAnimationAutomatic];
                 break;
             }
